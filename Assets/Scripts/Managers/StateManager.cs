@@ -4,20 +4,20 @@ namespace Assets.Scripts.Managers
 {
     public class StateManager : MonoBehaviour, IGameManager
     {
-        public StatusManager Status { get; private set; }
+        public EStatusManager Status { get; private set; }
         public Progress Progress { get; private set; }
 
         public void Startup()
         {
             Debug.Log("State manager starting...");
             Debug.Log($"Progress: {Progress}");
-            Status = StatusManager.Started;
+            Status = EStatusManager.Started;
         }
 
         public void Shutdown()
         {
             Debug.Log("State manager shutdown...");
-            Status = StatusManager.Shutdown;
+            Status = EStatusManager.Shutdown;
         }
         public bool IsEnergy(uint energy) => Progress.Energy - energy>= 0;
         public void AddEnergy(uint energy)

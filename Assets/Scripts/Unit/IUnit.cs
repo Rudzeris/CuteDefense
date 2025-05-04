@@ -6,9 +6,16 @@ namespace Assets.Scripts.Unit
     {
         event Action OnTakenDamage;
         event Action OnDestroyed;
-
-        void Startup();
+        BaseType Base { get; }
+        uint HP { get; }
         void TakeDamage();
+    }
+    public interface IControl
+    {
+        void Startup();
         void Shutdown();
+    }
+    public interface IUnitControl : IControl, IUnit
+    {
     }
 }

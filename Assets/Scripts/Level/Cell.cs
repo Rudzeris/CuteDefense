@@ -7,8 +7,8 @@ namespace Assets.Scripts.Level
     public class Cell : MonoBehaviour
     {
         public bool IsEmpty { get; private set; }
-        private AlliedCellUnit target;
-        public void AddObject(AlliedCellUnit obj)
+        private UnitBase target;
+        public void AddObject(UnitBase obj)
         {
             if (!IsEmpty)
             {

@@ -6,7 +6,7 @@ namespace Assets.Scripts.Managers
 {
     public abstract class BaseManager : MonoBehaviour
     {
-        protected List<IGameManager> managers;
+        protected List<IGameManager> managers = new List<IGameManager>();
         protected virtual void Start()
         {
             GameStart();
@@ -21,7 +21,7 @@ namespace Assets.Scripts.Managers
             for (int i = 0, last = 0; i < managers.Count; i = 0)
             {
                 foreach (IGameManager manager in managers)
-                    if (manager.Status == StatusManager.Started) i++;
+                    if (manager.Status == EStatusManager.Started) i++;
                 if (i > last)
                 {
                     last = i;
@@ -38,7 +38,7 @@ namespace Assets.Scripts.Managers
             for (int i = 0, last = 0; i < managers.Count; i = 0)
             {
                 foreach (IGameManager manager in managers)
-                    if (manager.Status == StatusManager.Started) i++;
+                    if (manager.Status == EStatusManager.Started) i++;
                 if (i > last)
                 {
                     last = i;

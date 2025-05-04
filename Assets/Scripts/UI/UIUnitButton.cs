@@ -12,8 +12,12 @@ namespace Assets.Scripts.UI
 
         private void Awake()
         {
-            GetComponent<Button>().onClick.AddListener(()=>
-                LevelManagers.UI.Select(this));
+            GetComponent<Button>().onClick.AddListener(Select);
+        }
+        public void Select() => LevelManagers.UI.Select(this);
+        public void UnSelect()
+        {
+
         }
     }
 }
