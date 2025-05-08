@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Unit;
+﻿using Assets.Scripts.Level;
+using Assets.Scripts.GameObjects;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace Assets.Scripts.Managers
     {
         public List<TypeObject<AlliedType, GameObject>> AlliedUnits = new List<TypeObject<AlliedType, GameObject>>();
         public LayerMask TileMask;
+        public event Action OnSpawned;
         public EStatusManager Status { get; private set; }
 
         public void Shutdown()
@@ -33,19 +35,18 @@ namespace Assets.Scripts.Managers
         {
             while (Status == EStatusManager.Started)
             {
-                yield return null;
                 RaycastHit2D hit = Physics2D.Raycast(
                     Camera.main.ScreenToWorldPoint(Input.mousePosition),
                     Vector2.zero,
                     Mathf.Infinity,
                     TileMask
                 );
-                if (hit.collider && LevelManagers.UI && AlliedUnits.Count > 0)
+                if (hit.collider?.GetComponent<Cell>() is Cell cell && cell.IsEmpty && LevelManagers.UIManager.IsSelect && AlliedUnits.Count > 0)
                 {
                     if (Input.GetMouseButtonDown(0))
                     {
                         Debug.Log($"AlliedCellManager: Cell click");
-                        var pair = AlliedUnits.Find(match => match.Key == LevelManagers.UI.UIButton.UnitType);
+                        var pair = AlliedUnits.Find(match => match.Key == LevelManagers.UIManager.Unit.Type);
                         GameObject gObject = pair.Key != AlliedType.None ? pair.Value : null;
 
                         if (gObject == null)
@@ -62,12 +63,14 @@ namespace Assets.Scripts.Managers
                             {
                                 Debug.Log($"AlliedCellManager: Instantiate");
                                 obj.transform.parent = null;
-                                if (obj.GetComponent<UnitBase>() is UnitBase unit)
-                                    unit.Base = BaseType.Allied;
+                                if (obj.GetComponent<IEntity>() is IEntity ucontrol)
+                                    cell.AddObject(ucontrol);
+                                OnSpawned?.Invoke();
                             }
                         }
                     }
                 }
+                yield return null;
             }
         }
     }

@@ -9,14 +9,14 @@ namespace Assets.Scripts.Managers
 
         public void Startup()
         {
-            Debug.Log("State manager starting...");
+            Debug.Log("StateManager manager starting...");
             Debug.Log($"Progress: {Progress}");
             Status = EStatusManager.Started;
         }
 
         public void Shutdown()
         {
-            Debug.Log("State manager shutdown...");
+            Debug.Log("StateManager manager shutdown...");
             Status = EStatusManager.Shutdown;
         }
         public bool IsEnergy(uint energy) => Progress.Energy - energy>= 0;

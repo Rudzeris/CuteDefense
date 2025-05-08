@@ -7,19 +7,19 @@ namespace Assets.Scripts.Managers
     [RequireComponent (typeof(AlliedCellManager))]
     public class LevelManagers : BaseManager
     {
-        public static StateManager State { get; private set; }
-        public static UIController UI { get; private set; }
-        public static AlliedCellManager Allien { get; private set; }
+        public static StateManager StateManager { get; private set; }
+        public static UIController UIManager { get; private set; }
+        public static AlliedCellManager AlliedManager { get; private set; }
 
         private void Awake()
         {
-            State = GetComponent<StateManager>();
-            UI = GetComponent<UIController>();
-            Allien = GetComponent<AlliedCellManager>();
+            StateManager = GetComponent<StateManager>();
+            UIManager = GetComponent<UIController>();
+            AlliedManager = GetComponent<AlliedCellManager>();
 
-            managers.Add(State);
-            managers.Add(UI);
-            managers.Add(Allien);
+            managers.Add(StateManager);
+            managers.Add(UIManager);
+            managers.Add(AlliedManager);
         }
     }
 }

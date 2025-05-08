@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Unit;
+﻿using Assets.Scripts.GameObjects;
 using System;
 using UnityEngine;
 
@@ -6,9 +6,9 @@ namespace Assets.Scripts.Level
 {
     public class Cell : MonoBehaviour
     {
-        public bool IsEmpty { get; private set; }
-        private UnitBase target;
-        public void AddObject(UnitBase obj)
+        public bool IsEmpty { get; private set; } = true;
+        private IEntity target;
+        public void AddObject(IEntity obj)
         {
             if (!IsEmpty)
             {
@@ -17,15 +17,24 @@ namespace Assets.Scripts.Level
             }
             if (obj == null)
                 throw new ArgumentNullException("obj is null");
+            Select(obj);
+            target.OnDestroyed += Unselect;
+        }
+        private void Select(IEntity unitControl)
+        {
             IsEmpty = false;
-            target = obj;
-            target.Startup();
+            target = unitControl;
+        }
+        private void Unselect()
+        {
+            IsEmpty = true;
+            target = null;
         }
         public void Clear()
         {
-            IsEmpty = true;
             if (target != null)
-                target.Shutdown();
+                target.TakeDamage(target.HP);
+            Unselect();
         }
     }
 }
