@@ -5,7 +5,7 @@ namespace Assets.Scripts.Managers
     [RequireComponent(typeof(StateManager))]
     [RequireComponent (typeof(UIController))]
     [RequireComponent (typeof(AlliedCellManager))]
-    public class LevelManagers : BaseManager
+    public class LevelManagers : BasicManager
     {
         public static StateManager StateManager { get; private set; }
         public static UIController UIManager { get; private set; }

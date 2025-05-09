@@ -4,15 +4,15 @@ using UnityEngine;
 
 namespace Assets.Scripts.Managers
 {
-    public abstract class BaseManager : MonoBehaviour
+    public abstract class BasicManager : MonoBehaviour
     {
         protected List<IGameManager> managers = new List<IGameManager>();
         protected virtual void Start()
         {
-            GameStart();
+            StartGame();
         }
-        public void GameStart() => StartCoroutine(StartupManagers());
-        public void GameEnd() => StartCoroutine(ShutdownManagers());
+        public void StartGame() => StartCoroutine(StartupManagers());
+        public void EndGame() => StartCoroutine(ShutdownManagers());
         protected virtual IEnumerator StartupManagers()
         {
             foreach (IGameManager manager in managers)
@@ -25,7 +25,7 @@ namespace Assets.Scripts.Managers
                 if (i > last)
                 {
                     last = i;
-                    Debug.Log($"BaseManager: {last}/{managers.Count}");
+                    Debug.Log($"BasicManager: {last}/{managers.Count}");
                 }
                 yield return null;
             }
@@ -42,7 +42,7 @@ namespace Assets.Scripts.Managers
                 if (i > last)
                 {
                     last = i;
-                    Debug.Log($"BaseManager: {last}/{managers.Count}");
+                    Debug.Log($"BasicManager: {last}/{managers.Count}");
                 }
                 yield return null;
             }
