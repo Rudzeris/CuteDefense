@@ -5,11 +5,11 @@ using UnityEngine;
 namespace Assets.Scripts.GameObjects
 {
     [RequireComponent(typeof(IFraction))]
-    public class EntityAttacking : MonoBehaviour, IAttackController
+    public class BasicAttack : MonoBehaviour, IAttackController
     {
         public event Action OnAttacking;
         public event Action<bool> OnViewEnemy;
-        [Header("EntityAttacking Parameters")]
+        [Header("BasicAttack Parameters")]
         [SerializeField] private int _damage = 3;
         [SerializeField] private float _distanceAttack = 1f;
         [Header("Cooldown Parameters")]
@@ -17,8 +17,8 @@ namespace Assets.Scripts.GameObjects
         [SerializeField] private float _forAllFirstAttackCooldown = 0.4f;
         private float _currentCooldown = 0;
         protected IFraction Fraction { get; private set; }
-        private IEntity _enemyEntity;
-        public IEntity EnemyEntity
+        private IBasicEntity _enemyEntity;
+        public IBasicEntity EnemyEntity
         {
             get => _enemyEntity;
             protected set { _enemyEntity = value; }
@@ -65,12 +65,12 @@ namespace Assets.Scripts.GameObjects
                 Mathf.Sign(transform.localScale.x) == -1 ? Vector2.left : Vector2.right,
                 _distanceAttack);
 
-            IEntity entity = null;
+            IBasicEntity entity = null;
             foreach (RaycastHit2D hit in hits)
             {
-                if (hit.collider != null && hit.collider.GetComponent<IFraction>()?.FractionType != this.Fraction.FractionType)
+                if (hit.collider != null && hit.collider.GetComponent<IFraction>()?.Fraction != this.Fraction.Fraction)
                 {
-                    entity = hit.collider.GetComponent<IEntity>();
+                    entity = hit.collider.GetComponent<IBasicEntity>();
                     if (entity != null && CheckEntity(entity))
                     {
                         break;
@@ -82,16 +82,17 @@ namespace Assets.Scripts.GameObjects
 
             EnemyEntity = entity;
             if (EnemyEntity != null)
-                EnemyEntity.OnDestroyed += () => { EnemyEntity = null; };
+                EnemyEntity.OnDestroyed += (_) => { EnemyEntity = null; };
         }
-        // Проверка Entity - атакуем ли его или нет
-        protected virtual bool CheckEntity(IEntity entity)
+        // Проверка BasicEntity - атакуем ли его или нет
+        protected virtual bool CheckEntity(IBasicEntity entity)
         {
-            return entity is IEntity;
+            return entity is IBasicEntity;
         }
         private void Attack()
         {
             _enemyEntity?.TakeDamage(this.Damage);
+            OnAttacking?.Invoke();
             _enemyEntity = null;
         }
 

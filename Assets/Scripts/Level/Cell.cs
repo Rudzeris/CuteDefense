@@ -7,8 +7,8 @@ namespace Assets.Scripts.Level
     public class Cell : MonoBehaviour
     {
         public bool IsEmpty { get; private set; } = true;
-        private IEntity target;
-        public void AddObject(IEntity obj)
+        private IBasicEntity target;
+        public void AddObject(IBasicEntity obj)
         {
             if (!IsEmpty)
             {
@@ -18,9 +18,9 @@ namespace Assets.Scripts.Level
             if (obj == null)
                 throw new ArgumentNullException("obj is null");
             Select(obj);
-            target.OnDestroyed += Unselect;
+            target.OnDestroyed += (_) => Unselect();
         }
-        private void Select(IEntity unitControl)
+        private void Select(IBasicEntity unitControl)
         {
             IsEmpty = false;
             target = unitControl;

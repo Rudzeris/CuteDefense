@@ -2,7 +2,7 @@
 
 namespace Assets.Scripts.Managers
 {
-    public class StateManager : MonoBehaviour, IGameManager
+    public class StateManager : MonoBehaviour, IManager
     {
         public EStatusManager Status { get; private set; }
         public Progress Progress { get; private set; }

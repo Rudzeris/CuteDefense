@@ -1,6 +1,12 @@
-﻿namespace Assets.Scripts.GameObjects
+﻿using Assets.Scripts.Managers;
+
+namespace Assets.Scripts.GameObjects
 {
-    public class Base : Entity, IBase
+    public class Base : BasicEntity, IBase
     {
+        private void Awake()
+        {
+            LevelManager.BaseManager.AddBase(this);
+        }
     }
 }

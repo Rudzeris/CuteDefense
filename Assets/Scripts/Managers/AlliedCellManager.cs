@@ -13,7 +13,7 @@ namespace Assets.Scripts.Managers
         public TKey Key;
         public TValue Value;
     }
-    public class AlliedCellManager : MonoBehaviour, IGameManager
+    public class AlliedCellManager : MonoBehaviour, IManager
     {
         public List<TypeObject<AlliedType, GameObject>> AlliedUnits = new List<TypeObject<AlliedType, GameObject>>();
         public LayerMask TileMask;
@@ -41,12 +41,11 @@ namespace Assets.Scripts.Managers
                     Mathf.Infinity,
                     TileMask
                 );
-                if (hit.collider?.GetComponent<Cell>() is Cell cell && cell.IsEmpty && LevelManagers.UIManager.IsSelect && AlliedUnits.Count > 0)
+                if (hit.collider?.GetComponent<Cell>() is Cell cell && cell.IsEmpty && LevelManager.UIManager.IsSelect && AlliedUnits.Count > 0)
                 {
                     if (Input.GetMouseButtonDown(0))
                     {
-                        Debug.Log($"AlliedCellManager: Cell click");
-                        var pair = AlliedUnits.Find(match => match.Key == LevelManagers.UIManager.Unit.Type);
+                        var pair = AlliedUnits.Find(match => match.Key == LevelManager.UIManager.Unit.Type);
                         GameObject gObject = pair.Key != AlliedType.None ? pair.Value : null;
 
                         if (gObject == null)
@@ -61,9 +60,9 @@ namespace Assets.Scripts.Managers
                             );
                             if (obj != null)
                             {
-                                Debug.Log($"AlliedCellManager: Instantiate");
+                                Debug.Log($"AllyEntity Instantiate");
                                 obj.transform.parent = null;
-                                if (obj.GetComponent<IEntity>() is IEntity ucontrol)
+                                if (obj.GetComponent<IBasicEntity>() is IBasicEntity ucontrol)
                                     cell.AddObject(ucontrol);
                                 OnSpawned?.Invoke();
                             }

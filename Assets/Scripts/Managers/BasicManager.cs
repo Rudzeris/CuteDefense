@@ -6,7 +6,7 @@ namespace Assets.Scripts.Managers
 {
     public abstract class BasicManager : MonoBehaviour
     {
-        protected List<IGameManager> managers = new List<IGameManager>();
+        protected List<IManager> managers = new List<IManager>();
         protected virtual void Start()
         {
             StartGame();
@@ -15,12 +15,12 @@ namespace Assets.Scripts.Managers
         public void EndGame() => StartCoroutine(ShutdownManagers());
         protected virtual IEnumerator StartupManagers()
         {
-            foreach (IGameManager manager in managers)
+            foreach (IManager manager in managers)
                 manager.Startup();
             yield return null;
             for (int i = 0, last = 0; i < managers.Count; i = 0)
             {
-                foreach (IGameManager manager in managers)
+                foreach (IManager manager in managers)
                     if (manager.Status == EStatusManager.Started) i++;
                 if (i > last)
                 {
@@ -32,12 +32,12 @@ namespace Assets.Scripts.Managers
         }
         protected virtual IEnumerator ShutdownManagers()
         {
-            foreach (IGameManager manager in managers)
+            foreach (IManager manager in managers)
                 manager.Startup();
             yield return null;
             for (int i = 0, last = 0; i < managers.Count; i = 0)
             {
-                foreach (IGameManager manager in managers)
+                foreach (IManager manager in managers)
                     if (manager.Status == EStatusManager.Started) i++;
                 if (i > last)
                 {

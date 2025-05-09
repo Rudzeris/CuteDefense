@@ -4,6 +4,6 @@ namespace Assets.Scripts.GameObjects.Fractions
 {
     public class AllyFraction : MonoBehaviour, IFraction
     {
-        public FractionType FractionType => FractionType.Ally;
+        public FractionType Fraction => FractionType.Ally;
     }
 }

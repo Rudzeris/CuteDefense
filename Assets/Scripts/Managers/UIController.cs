@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Managers
 {
-    public class UIController : MonoBehaviour, IGameManager
+    public class UIController : MonoBehaviour, IManager
     {
         public EStatusManager Status { get; private set; }
         private UIUnitButton UIButton;
@@ -12,19 +12,18 @@ namespace Assets.Scripts.Managers
         public bool IsSelect => UIButton != null;
         public void Shutdown()
         {
-            LevelManagers.AlliedManager.OnSpawned -= UnSelect;
+            LevelManager.AlliedManager.OnSpawned -= UnSelect;
             Status = EStatusManager.Shutdown;
         }
 
         public void Startup()
         {
-            LevelManagers.AlliedManager.OnSpawned += UnSelect;
+            LevelManager.AlliedManager.OnSpawned += UnSelect;
             Status = EStatusManager.Started;
         }
         private void UnSelect() => UIButton = null;
         public void Select(UIUnitButton button)
         {
-            Debug.Log($"Button: Select {button.AlliedType}");
             UIButton?.UnSelect();
             UIButton = UIButton == button ? null : button;
         }

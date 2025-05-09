@@ -14,7 +14,7 @@ namespace Assets.Scripts.UI
         {
             GetComponent<Button>().onClick.AddListener(Select);
         }
-        public void Select() => LevelManagers.UIManager.Select(this);
+        public void Select() => LevelManager.UIManager.Select(this);
         public void UnSelect()
         {
 

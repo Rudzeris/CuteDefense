@@ -1,0 +1,39 @@
+﻿using Assets.Scripts.GameObjects.Fractions;
+using System;
+using System.Collections;
+using UnityEngine;
+
+namespace Assets.Scripts.GameObjects
+{
+    [RequireComponent(typeof(IFraction))]
+    public class BasicEntity : MonoBehaviour, IBasicEntity
+    {
+        public event Action<IBasicEntity, int> OnTakenDamage;
+        public event Action<IBasicEntity> OnDestroyed;
+        [SerializeField] private int _hp = 1;
+        private IFraction _fraction;
+        public bool IsDestroyed { get; private set; }
+        public int HP => _hp;
+
+        public void TakeDamage(int damage)
+        {
+            _hp = Math.Clamp(_hp - damage, 0, _hp);
+            OnTakenDamage?.Invoke(this,damage);
+            if (_hp == 0)
+            {
+                StartCoroutine(Destroyed());
+            }
+        }
+
+        private IEnumerator Destroyed()
+        {
+            OnDestroyed?.Invoke(this);
+            if (!IsDestroyed)
+            {
+                IsDestroyed = true;
+                yield return null;
+                Destroy(this.gameObject);
+            }
+        }
+    }
+}

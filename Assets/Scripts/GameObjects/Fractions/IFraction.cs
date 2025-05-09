@@ -2,10 +2,10 @@ namespace Assets.Scripts.GameObjects.Fractions {
     
     public interface IFraction
     {
-        FractionType FractionType { get; }
+        FractionType Fraction { get; }
     }
     public interface IModifyFraction
     {
-        FractionType FractionType { get; set; }
+        FractionType Fraction { get; set; }
     }
 }

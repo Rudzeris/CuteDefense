@@ -27,7 +27,7 @@ namespace Assets.Scripts.GameObjects
         }
         private void Start()
         {
-            if (GetComponent<EntityAttacking>() is EntityAttacking attack)
+            if (GetComponent<BasicAttack>() is BasicAttack attack)
             {
                 attack.OnViewEnemy += (v) => IsMove = !v;
             }
