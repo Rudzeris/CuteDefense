@@ -3,8 +3,8 @@
      public enum AlliedType
     {
         None,
-        First,
-        Second
+        Player,
+        Sheep
     }
     public enum Direction2 { None,Left,Right};
 }

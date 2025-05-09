@@ -4,7 +4,7 @@ namespace Assets.Scripts.GameObjects
 {
     public class Base : BasicEntity, IBase
     {
-        private void Awake()
+        private void Start()
         {
             LevelManager.BaseManager.AddBase(this);
         }

@@ -66,8 +66,8 @@ namespace Assets.Scripts.Managers
             {
                 bases.Remove(eBase);
                 countBases[FractionType.Ally] -= 1;
-                EndGameCheck();
                 Debug.Log("Ally base destroyed");
+                EndGameCheck();
             }
         }
         private void EnemyBaseDestroyed(IBasicEntity entity)
@@ -76,8 +76,8 @@ namespace Assets.Scripts.Managers
             {
                 bases.Remove(eBase);
                 countBases[FractionType.Enemy] -= 1;
-                EndGameCheck();
                 Debug.Log("Enemy base destroyed");
+                EndGameCheck();
             }
         }
     }

@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 7921025910061835484}
   - component: {fileID: 7408324853066476263}
   - component: {fileID: -3105044528199093549}
-  - component: {fileID: -3864352771190801653}
+  - component: {fileID: 4627486840615149498}
   - component: {fileID: -5556613011027813968}
-  - component: {fileID: -8764247598297479310}
+  - component: {fileID: 181219417205350948}
   - component: {fileID: -6596638584541210134}
   m_Layer: 7
   m_Name: Skeleton
@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7bb68a1bb1b327478e8d84a1b96a8e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-3864352771190801653
+--- !u!114 &4627486840615149498
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -132,10 +132,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6696142712972188941}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7654ed0b340b0e74e88726550a2b6e36, type: 3}
+  m_Script: {fileID: 11500000, guid: b7dcb57d2fb8d2743b435a6fafa37867, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hp: 1
+  _hp: 5
 --- !u!114 &-5556613011027813968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,7 +153,7 @@ MonoBehaviour:
   _acceleration: 1
   _deceleration: 10
   _currentSpeed: 0
---- !u!114 &-8764247598297479310
+--- !u!114 &181219417205350948
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,10 +162,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6696142712972188941}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5575f9505c638274bafe6baf64d4b1d3, type: 3}
+  m_Script: {fileID: 11500000, guid: 45ee9a246e275f54aa1f494686ffaaae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 3
+  _damage: 1
   _distanceAttack: 1
   _cooldown: 1.5
   _forAllFirstAttackCooldown: 0.4

@@ -1,6 +1,6 @@
-﻿using Assets.Scripts.GameObjects.Fractions;
-using System;
+﻿using System;
 using System.Collections;
+using Assets.Scripts.GameObjects.Fractions;
 using UnityEngine;
 
 namespace Assets.Scripts.GameObjects
@@ -18,7 +18,7 @@ namespace Assets.Scripts.GameObjects
         public void TakeDamage(int damage)
         {
             _hp = Math.Clamp(_hp - damage, 0, _hp);
-            OnTakenDamage?.Invoke(this,damage);
+            OnTakenDamage?.Invoke(this, damage);
             if (_hp == 0)
             {
                 StartCoroutine(Destroyed());
@@ -27,10 +27,10 @@ namespace Assets.Scripts.GameObjects
 
         private IEnumerator Destroyed()
         {
-            OnDestroyed?.Invoke(this);
             if (!IsDestroyed)
             {
                 IsDestroyed = true;
+                OnDestroyed?.Invoke(this);
                 yield return null;
                 Destroy(this.gameObject);
             }
