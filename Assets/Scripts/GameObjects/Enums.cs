@@ -1,10 +1,15 @@
 ﻿namespace Assets.Scripts.GameObjects
 {
-     public enum AlliedType
+    public enum AllyType
     {
         None,
         Player,
         Sheep
     }
-    public enum Direction2 { None,Left,Right};
+    public enum EnemyType
+    {
+        None,
+        Skeleton
+    }
+    public enum Direction2 { None, Left, Right };
 }

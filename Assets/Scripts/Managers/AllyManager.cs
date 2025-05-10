@@ -15,7 +15,7 @@ namespace Assets.Scripts.Managers
     }
     public class AllyManager : MonoBehaviour, IManager
     {
-        public List<TypeObject<AlliedType, GameObject>> AlliedUnits = new List<TypeObject<AlliedType, GameObject>>();
+        public List<TypeObject<AllyType, GameObject>> AllyObjects = new List<TypeObject<AllyType, GameObject>>();
         public LayerMask TileMask;
         public event Action OnSpawned;
         public EStatusManager Status { get; private set; }
@@ -41,12 +41,12 @@ namespace Assets.Scripts.Managers
                     Mathf.Infinity,
                     TileMask
                 );
-                if (hit.collider?.GetComponent<Cell>() is Cell cell && cell.IsEmpty && LevelManager.UIManager.IsSelect && AlliedUnits.Count > 0)
+                if (hit.collider?.GetComponent<Cell>() is Cell cell && cell.IsEmpty && LevelManager.UIManager.IsSelect && AllyObjects.Count > 0)
                 {
                     if (Input.GetMouseButtonDown(0))
                     {
-                        var pair = AlliedUnits.Find(match => match.Key == LevelManager.UIManager.Unit.Type);
-                        GameObject gObject = pair.Key != AlliedType.None ? pair.Value : null;
+                        var pair = AllyObjects.Find(match => match.Key == LevelManager.UIManager.Unit.Type);
+                        GameObject gObject = pair.Key != AllyType.None ? pair.Value : null;
 
                         if (gObject == null)
                         {

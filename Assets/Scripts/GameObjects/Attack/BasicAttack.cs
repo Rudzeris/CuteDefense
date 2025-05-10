@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.GameObjects.Fractions;
 using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Assets.Scripts.GameObjects
@@ -41,21 +42,20 @@ namespace Assets.Scripts.GameObjects
             Gizmos.DrawLine(transform.position, new Vector3(transform.position.x + _distanceAttack * Mathf.Sign(transform.localScale.x)
                 , transform.position.y, transform.position.z));
         }
-        private void Update()
+        private IEnumerator Attacking()
         {
-            if (_currentCooldown <= 0 && IsAttack)
+            if (_enemyEntity == null)
             {
                 FindEnemyEntity();
-                if (_enemyEntity != null)
-                {
-                    if (_currentCooldown <= -_forAllFirstAttackCooldown)
-                        Attack();
-                    else
-                        _currentCooldown -= Time.deltaTime;
-                }
+                yield return new WaitForSeconds(_forAllFirstAttackCooldown);
+            }
+            if (_enemyEntity != null)
+            {
+                Attack();
+                yield return new WaitForSeconds(Cooldown);
             }
             else
-                _currentCooldown -= Time.deltaTime;
+                yield return null;
         }
         private void FindEnemyEntity()
         {

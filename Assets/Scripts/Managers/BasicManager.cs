@@ -4,6 +4,11 @@ using UnityEngine;
 
 namespace Assets.Scripts.Managers
 {
+    public static class Random
+    {
+        private static System.Random _random = new System.Random();
+        public static int Next(int begin, int end) => _random.Next(begin, end);
+    }
     public abstract class BasicManager : MonoBehaviour
     {
         protected List<IManager> managers = new List<IManager>();

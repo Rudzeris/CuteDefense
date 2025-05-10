@@ -1,5 +1,5 @@
-﻿using Assets.Scripts.UI;
-using Assets.Scripts.GameObjects;
+﻿using Assets.Scripts.GameObjects;
+using Assets.Scripts.UI;
 using UnityEngine;
 
 namespace Assets.Scripts.Managers
@@ -7,8 +7,8 @@ namespace Assets.Scripts.Managers
     public class UIController : MonoBehaviour, IManager
     {
         public EStatusManager Status { get; private set; }
-        private UIUnitButton UIButton;
-        public (AlliedType Type, uint Cost) Unit => (UIButton?.AlliedType??AlliedType.None, UIButton?.Cost??0);
+        private UIEntityButton UIButton;
+        public (AllyType Type, uint Cost) Unit => (UIButton?.AlliedType ?? AllyType.None, UIButton?.Cost ?? 0);
         public bool IsSelect => UIButton != null;
         public void Shutdown()
         {
@@ -21,8 +21,13 @@ namespace Assets.Scripts.Managers
             LevelManager.AllyManager.OnSpawned += UnSelect;
             Status = EStatusManager.Started;
         }
-        private void UnSelect() => UIButton = null;
-        public void Select(UIUnitButton button)
+        private void UnSelect()
+        {
+#if !UNITY_EDITOR
+            UIButton = null;
+#endif
+        }
+        public void Select(UIEntityButton button)
         {
             UIButton?.UnSelect();
             UIButton = UIButton == button ? null : button;

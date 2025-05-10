@@ -166,8 +166,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 3
-  _distanceAttack: 2
-  _cooldown: 1.5
+  _distanceAttack: 1
+  _cooldown: 2
   _forAllFirstAttackCooldown: 0.4
 --- !u!61 &-1427987985874589333
 BoxCollider2D:

@@ -6,12 +6,14 @@ namespace Assets.Scripts.Managers
     [RequireComponent(typeof(UIController))]
     [RequireComponent(typeof(AllyManager))]
     [RequireComponent(typeof(BaseManager))]
+    [RequireComponent(typeof(EnemyManager))]
     public class LevelManager : BasicManager
     {
         public static StateManager StateManager { get; private set; }
         public static UIController UIManager { get; private set; }
         public static AllyManager AllyManager { get; private set; }
         public static BaseManager BaseManager { get; private set; }
+        public static EnemyManager EnemyManager { get; private set; }
 
         private void Awake()
         {
@@ -19,11 +21,13 @@ namespace Assets.Scripts.Managers
             UIManager = GetComponent<UIController>();
             AllyManager = GetComponent<AllyManager>();
             BaseManager = GetComponent<BaseManager>();
+            EnemyManager = GetComponent<EnemyManager>();
 
             managers.Add(StateManager);
             managers.Add(UIManager);
             managers.Add(AllyManager);
             managers.Add(BaseManager);
+            managers.Add(EnemyManager);
         }
     }
 }

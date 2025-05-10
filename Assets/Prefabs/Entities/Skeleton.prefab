@@ -165,9 +165,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45ee9a246e275f54aa1f494686ffaaae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 1
+  _damage: 3
   _distanceAttack: 1
-  _cooldown: 1.5
+  _cooldown: 2
   _forAllFirstAttackCooldown: 0.4
 --- !u!61 &-6596638584541210134
 BoxCollider2D:

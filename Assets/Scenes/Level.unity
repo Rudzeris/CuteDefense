@@ -211,6 +211,7 @@ GameObject:
   - component: {fileID: 170953568}
   - component: {fileID: 170953567}
   - component: {fileID: 170953566}
+  - component: {fileID: 170953570}
   - component: {fileID: 170953565}
   - component: {fileID: 170953569}
   m_Layer: 0
@@ -259,7 +260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03ed71f78a326c419abf64ba96f2706, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AlliedUnits:
+  AllyObjects:
   - Key: 1
     Value: {fileID: 8967658965596200605, guid: 1bbc2b6062d0c1248ac5db56813c71f7, type: 3}
   - Key: 2
@@ -303,6 +304,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e46d89603fbafe54e881bea4ec28ce9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &170953570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170953563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03396ba30ab369a47b84c68024a236ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemyCells:
+  - {fileID: 2586399868988062824}
+  - {fileID: 601490544}
+  EnemyObjects:
+  - Key: 1
+    Value: {fileID: 6696142712972188941, guid: 65e0bccbfd275b848855bcbcc198063b, type: 3}
+  Cooldown: 6
+  FirstEntitySpawnCooldown: 4
 --- !u!1 &374722783
 GameObject:
   m_ObjectHideFlags: 0
@@ -18257,7 +18278,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6016203938666724845, guid: 1db3eb768cd8ec84e8234b3523cff693, type: 3}
       propertyPath: m_Name
-      value: EnemyCell
+      value: EnemyCel2
       objectReference: {fileID: 0}
     - target: {fileID: 7101155073438569368, guid: 1db3eb768cd8ec84e8234b3523cff693, type: 3}
       propertyPath: m_LocalPosition.x
@@ -18307,6 +18328,11 @@ PrefabInstance:
 --- !u!4 &601490543 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7101155073438569368, guid: 1db3eb768cd8ec84e8234b3523cff693, type: 3}
+  m_PrefabInstance: {fileID: 601490542}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &601490544 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6016203938666724845, guid: 1db3eb768cd8ec84e8234b3523cff693, type: 3}
   m_PrefabInstance: {fileID: 601490542}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &619394800
@@ -19491,7 +19517,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6016203938666724845, guid: 1db3eb768cd8ec84e8234b3523cff693, type: 3}
       propertyPath: m_Name
-      value: EnemyCell
+      value: EnemyCell1
       objectReference: {fileID: 0}
     - target: {fileID: 7101155073438569368, guid: 1db3eb768cd8ec84e8234b3523cff693, type: 3}
       propertyPath: m_LocalPosition.x
@@ -19538,6 +19564,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1db3eb768cd8ec84e8234b3523cff693, type: 3}
+--- !u!1 &2586399868988062824 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6016203938666724845, guid: 1db3eb768cd8ec84e8234b3523cff693, type: 3}
+  m_PrefabInstance: {fileID: 2586399868988062823}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6500756639011129641 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7101155073438569368, guid: 1db3eb768cd8ec84e8234b3523cff693, type: 3}

@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.UI
 {
-    public class UIUnitButton : MonoBehaviour
+    public class UIEntityButton : MonoBehaviour
     {
-        [SerializeField] public AlliedType AlliedType;
+        [SerializeField] public AllyType AlliedType;
         [SerializeField] public uint Cost = 10;
 
         private void Awake()
