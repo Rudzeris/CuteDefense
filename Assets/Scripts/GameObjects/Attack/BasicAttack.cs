@@ -16,7 +16,6 @@ namespace Assets.Scripts.GameObjects
         [Header("Cooldown Parameters")]
         [SerializeField] private float _cooldown = 1.5f;
         [SerializeField] private float _forAllFirstAttackCooldown = 0.4f;
-        private float _currentCooldown = 0;
         protected IFraction Fraction { get; private set; }
         private IBasicEntity _enemyEntity;
         public IBasicEntity EnemyEntity
@@ -24,7 +23,7 @@ namespace Assets.Scripts.GameObjects
             get => _enemyEntity;
             protected set { _enemyEntity = value; }
         }
-        public bool IsAttack { get; private set; } = true;
+        public bool IsAttack { get; private set; } = false;
 
         public int Damage => _damage;
         public float DistanceAttack => _distanceAttack;
@@ -35,27 +34,35 @@ namespace Assets.Scripts.GameObjects
         {
             Fraction = GetComponent<IFraction>();
         }
-
+        private void Start()
+        {
+            Startup();
+        }
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
             Gizmos.DrawLine(transform.position, new Vector3(transform.position.x + _distanceAttack * Mathf.Sign(transform.localScale.x)
                 , transform.position.y, transform.position.z));
         }
-        private IEnumerator Attacking()
+        private IEnumerator Attack()
         {
-            if (_enemyEntity == null)
+            while (IsAttack)
             {
-                FindEnemyEntity();
-                yield return new WaitForSeconds(_forAllFirstAttackCooldown);
+                if (_enemyEntity == null)
+                {
+                    FindEnemyEntity();
+                    yield return new WaitForSeconds(_forAllFirstAttackCooldown);
+                }
+                if (_enemyEntity != null)
+                {
+                    _enemyEntity?.TakeDamage(this.Damage);
+                    OnAttacking?.Invoke();
+                    _enemyEntity = null;
+                    yield return new WaitForSeconds(Cooldown);
+                }
+                else
+                    yield return null;
             }
-            if (_enemyEntity != null)
-            {
-                Attack();
-                yield return new WaitForSeconds(Cooldown);
-            }
-            else
-                yield return null;
         }
         private void FindEnemyEntity()
         {
@@ -89,14 +96,15 @@ namespace Assets.Scripts.GameObjects
         {
             return entity is IBasicEntity;
         }
-        private void Attack()
-        {
-            _enemyEntity?.TakeDamage(this.Damage);
-            OnAttacking?.Invoke();
-            _enemyEntity = null;
-        }
 
-        public void Startup() => IsAttack = true;
+        public void Startup()
+        {
+            if (!IsAttack)
+            {
+                IsAttack = true;
+                StartCoroutine(Attack());
+            }
+        }
         public void Shutdown() => IsAttack = false;
     }
 }

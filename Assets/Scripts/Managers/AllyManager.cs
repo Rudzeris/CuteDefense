@@ -64,6 +64,8 @@ namespace Assets.Scripts.Managers
                                 obj.transform.parent = null;
                                 if (obj.GetComponent<IBasicEntity>() is IBasicEntity ucontrol)
                                     cell.AddObject(ucontrol);
+                                foreach (var i in obj.GetComponents<IController>())
+                                    i.Startup();
                                 OnSpawned?.Invoke();
                             }
                         }
