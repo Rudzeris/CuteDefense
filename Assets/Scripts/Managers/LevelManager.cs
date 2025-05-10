@@ -10,19 +10,19 @@ namespace Assets.Scripts.Managers
     {
         public static StateManager StateManager { get; private set; }
         public static UIController UIManager { get; private set; }
-        public static AllyManager AlliedManager { get; private set; }
+        public static AllyManager AllyManager { get; private set; }
         public static BaseManager BaseManager { get; private set; }
 
         private void Awake()
         {
             StateManager = GetComponent<StateManager>();
             UIManager = GetComponent<UIController>();
-            AlliedManager = GetComponent<AllyManager>();
+            AllyManager = GetComponent<AllyManager>();
             BaseManager = GetComponent<BaseManager>();
 
             managers.Add(StateManager);
             managers.Add(UIManager);
-            managers.Add(AlliedManager);
+            managers.Add(AllyManager);
             managers.Add(BaseManager);
         }
     }

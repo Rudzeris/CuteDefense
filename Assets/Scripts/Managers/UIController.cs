@@ -12,13 +12,13 @@ namespace Assets.Scripts.Managers
         public bool IsSelect => UIButton != null;
         public void Shutdown()
         {
-            LevelManager.AlliedManager.OnSpawned -= UnSelect;
+            LevelManager.AllyManager.OnSpawned -= UnSelect;
             Status = EStatusManager.Shutdown;
         }
 
         public void Startup()
         {
-            LevelManager.AlliedManager.OnSpawned += UnSelect;
+            LevelManager.AllyManager.OnSpawned += UnSelect;
             Status = EStatusManager.Started;
         }
         private void UnSelect() => UIButton = null;
