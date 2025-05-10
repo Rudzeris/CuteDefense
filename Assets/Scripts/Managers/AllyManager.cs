@@ -13,7 +13,7 @@ namespace Assets.Scripts.Managers
         public TKey Key;
         public TValue Value;
     }
-    public class AlliedCellManager : MonoBehaviour, IManager
+    public class AllyManager : MonoBehaviour, IManager
     {
         public List<TypeObject<AlliedType, GameObject>> AlliedUnits = new List<TypeObject<AlliedType, GameObject>>();
         public LayerMask TileMask;
