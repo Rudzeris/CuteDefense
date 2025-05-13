@@ -1,5 +1,5 @@
-﻿using Assets.Scripts.Level;
-using Assets.Scripts.GameObjects;
+﻿using Assets.Scripts.GameObjects;
+using Assets.Scripts.Level;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -47,26 +47,30 @@ namespace Assets.Scripts.Managers
                     {
                         var pair = AllyObjects.Find(match => match.Key == LevelManager.UIManager.Unit.Type);
                         GameObject gObject = pair.Key != AllyType.None ? pair.Value : null;
-
+                        int cost = LevelManager.UIManager.Unit.Cost;
                         if (gObject == null)
                         {
                             Debug.LogError("AlliedCellManager: AlliedUnits");
                         }
                         else
                         {
-                            var obj = Instantiate(gObject,
-                                hit.collider.transform.position,
-                            Quaternion.identity
-                            );
-                            if (obj != null)
+                            if (LevelManager.StateManager.IsEnergy(cost))
                             {
-                                Debug.Log($"AllyEntity Instantiate");
-                                obj.transform.parent = null;
-                                if (obj.GetComponent<IBasicEntity>() is IBasicEntity ucontrol)
-                                    cell.AddObject(ucontrol);
-                                foreach (var i in obj.GetComponents<IController>())
-                                    i.Startup();
-                                OnSpawned?.Invoke();
+                                var obj = Instantiate(gObject,
+                                    hit.collider.transform.position,
+                                Quaternion.identity
+                                );
+                                if (obj != null)
+                                {
+                                    Debug.Log($"AllyEntity Instantiate");
+                                    LevelManager.StateManager.ChangeEnergy(-cost);
+                                    obj.transform.parent = null;
+                                    /*if (obj.GetComponent<IBasicEntity>() is IBasicEntity ucontrol)
+                                        cell.AddObject(ucontrol);*/
+                                    foreach (var i in obj.GetComponents<IController>())
+                                        i.Startup();
+                                    OnSpawned?.Invoke();
+                                }
                             }
                         }
                     }

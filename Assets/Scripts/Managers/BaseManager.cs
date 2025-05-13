@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.GameObjects;
 using Assets.Scripts.GameObjects.Fractions;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ namespace Assets.Scripts.Managers
 {
     public class BaseManager : MonoBehaviour, IManager
     {
+        public event Action<FractionType> OnEndingGame;
         private List<IBase> bases = new List<IBase>();
         private Dictionary<FractionType, int> countBases = new Dictionary<FractionType, int>()
         {
@@ -54,11 +56,11 @@ namespace Assets.Scripts.Managers
                 enemyDef = true;
 
             if (allyDef && enemyDef)
-                Debug.Log("Game: Tie");
+                OnEndingGame?.Invoke(FractionType.None);
             else if (enemyDef)
-                Debug.Log("Game: Win");
+                OnEndingGame?.Invoke(FractionType.Ally);
             else if (allyDef)
-                Debug.Log("Game: Defeat");
+                OnEndingGame?.Invoke(FractionType.Enemy);
         }
         private void AllyBaseDestroyed(IBasicEntity entity)
         {

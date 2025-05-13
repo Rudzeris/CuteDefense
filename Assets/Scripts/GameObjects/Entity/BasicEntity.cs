@@ -6,6 +6,7 @@ using UnityEngine;
 namespace Assets.Scripts.GameObjects
 {
     [RequireComponent(typeof(IFraction))]
+    [RequireComponent(typeof(Collider2D))]
     public class BasicEntity : MonoBehaviour, IBasicEntity
     {
         public event Action<IBasicEntity, int> OnTakenDamage;

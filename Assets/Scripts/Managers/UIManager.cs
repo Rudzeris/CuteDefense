@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace Assets.Scripts.Managers
 {
-    public class UIController : MonoBehaviour, IManager
+    public class UIManager : MonoBehaviour, IManager
     {
         public EStatusManager Status { get; private set; }
         private UIEntityButton UIButton;
-        public (AllyType Type, uint Cost) Unit => (UIButton?.AlliedType ?? AllyType.None, UIButton?.Cost ?? 0);
+        public (AllyType Type, int Cost) Unit => (UIButton?.AlliedType ?? AllyType.None, UIButton?.Cost ?? 0);
         public bool IsSelect => UIButton != null;
         public void Shutdown()
         {

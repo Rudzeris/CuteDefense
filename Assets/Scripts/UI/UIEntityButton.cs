@@ -8,7 +8,7 @@ namespace Assets.Scripts.UI
     public class UIEntityButton : MonoBehaviour
     {
         [SerializeField] public AllyType AlliedType;
-        [SerializeField] public uint Cost = 10;
+        [SerializeField] public int Cost = 10;
 
         private void Awake()
         {
