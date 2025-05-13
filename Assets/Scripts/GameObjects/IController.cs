@@ -9,4 +9,7 @@
         void ReverseDirection();
     }
     public interface IAttackController : IController { }
+    public interface ITarget {
+        bool CheckEntity(IBasicEntity entity);
+    }
 }

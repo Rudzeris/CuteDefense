@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 9199890812882152283}
   - component: {fileID: 7828399877703493467}
   - component: {fileID: 4768790759533790455}
+  - component: {fileID: 6546698594037094173}
   - component: {fileID: -2721151987997038101}
   - component: {fileID: -1427987985874589333}
   m_Layer: 7
@@ -153,6 +154,18 @@ MonoBehaviour:
   _acceleration: 1
   _deceleration: 10
   _currentSpeed: 0
+--- !u!114 &6546698594037094173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8967658965596200605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fafc0db363d7c5429ab38776e20c996, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &-2721151987997038101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,7 +175,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8967658965596200605}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5575f9505c638274bafe6baf64d4b1d3, type: 3}
+  m_Script: {fileID: 11500000, guid: 45ee9a246e275f54aa1f494686ffaaae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 3

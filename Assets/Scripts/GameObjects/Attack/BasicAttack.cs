@@ -6,6 +6,7 @@ using UnityEngine;
 namespace Assets.Scripts.GameObjects
 {
     [RequireComponent(typeof(IFraction))]
+    [RequireComponent(typeof(ITarget))]
     public class BasicAttack : MonoBehaviour, IAttackController
     {
         public event Action OnAttacking;
@@ -17,6 +18,7 @@ namespace Assets.Scripts.GameObjects
         [SerializeField] private float _cooldown = 1.5f;
         [SerializeField] private float _forAllFirstAttackCooldown = 0.4f;
         protected IFraction Fraction { get; private set; }
+        protected ITarget Target { get; private set; }
         private IBasicEntity _enemyEntity;
         public IBasicEntity EnemyEntity
         {
@@ -33,6 +35,7 @@ namespace Assets.Scripts.GameObjects
         private void Awake()
         {
             Fraction = GetComponent<IFraction>();
+            Target = GetComponent<ITarget>();
         }
         private void Start()
         {
@@ -92,9 +95,9 @@ namespace Assets.Scripts.GameObjects
                 EnemyEntity.OnDestroyed += (_) => { EnemyEntity = null; };
         }
         // Проверка BasicEntity - атакуем ли его или нет
-        protected virtual bool CheckEntity(IBasicEntity entity)
+        protected bool CheckEntity(IBasicEntity entity)
         {
-            return entity is IBasicEntity;
+            return Target.CheckEntity(entity);
         }
 
         public void Startup()
