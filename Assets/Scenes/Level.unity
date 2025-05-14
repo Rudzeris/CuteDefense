@@ -380,14 +380,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03ed71f78a326c419abf64ba96f2706, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AllyObjects:
+  PlacementObjects:
   - Key: 1
     Value: {fileID: 8967658965596200605, guid: 1bbc2b6062d0c1248ac5db56813c71f7, type: 3}
+    PlacementType: 0
   - Key: 2
     Value: {fileID: 6335083600558817207, guid: d0c79047009331a4c936dc0708ce91d2, type: 3}
+    PlacementType: 0
   - Key: 3
     Value: {fileID: 4320336527684713424, guid: 9fbca10480b4a02468558933cf8f9392, type: 3}
-  TileMask:
+    PlacementType: 1
+  CellTileMask:
     serializedVersion: 2
     m_Bits: 64
 --- !u!114 &170953567
@@ -445,6 +448,7 @@ MonoBehaviour:
   EnemyObjects:
   - Key: 1
     Value: {fileID: 6696142712972188941, guid: 65e0bccbfd275b848855bcbcc198063b, type: 3}
+    PlacementType: 0
   Cooldown: 6
   FirstEntitySpawnCooldown: 4
 --- !u!114 &170953571
@@ -470,6 +474,7 @@ GameObject:
   - component: {fileID: 374722784}
   - component: {fileID: 374722786}
   - component: {fileID: 374722785}
+  - component: {fileID: 374722787}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -15985,6 +15990,42 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!19719996 &374722787
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 374722783}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0
+  m_UseDelaunayMesh: 0
 --- !u!1 &376950042
 GameObject:
   m_ObjectHideFlags: 0
