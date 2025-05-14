@@ -1,11 +1,13 @@
 ﻿using Assets.Scripts.GameObjects;
 using Assets.Scripts.UI;
+using System;
 using UnityEngine;
 
 namespace Assets.Scripts.Managers
 {
     public class UIManager : MonoBehaviour, IManager
     {
+        public event Action<(AllyType Type, int Cost)> OnSelected;
         public EStatusManager Status { get; private set; }
         private UIEntityButton UIButton;
         public (AllyType Type, int Cost) Unit => (UIButton?.AlliedType ?? AllyType.None, UIButton?.Cost ?? 0);
@@ -31,6 +33,7 @@ namespace Assets.Scripts.Managers
         {
             UIButton?.UnSelect();
             UIButton = UIButton == button ? null : button;
+            OnSelected?.Invoke(Unit);
         }
     }
 }
