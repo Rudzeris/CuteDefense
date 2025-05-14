@@ -52,7 +52,7 @@ namespace Assets.Scripts.Managers
                     GameObject gObject = pair.Key != EnemyType.None ? pair.Value : null;
                     if (gObject == null)
                     {
-                        Debug.LogError("EnemyManager: EnemyEntity dont find");
+                        Debug.LogError("EnemyManager: _enemyEntity dont find");
                     }
                     else
                     {

@@ -2,7 +2,7 @@
 {
     public enum FractionType
     {
-        None, Ally, Enemy
+        None, Ally, Enemy, Unknown
     }
 
 }

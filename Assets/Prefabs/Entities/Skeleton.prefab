@@ -182,6 +182,7 @@ MonoBehaviour:
   _distanceAttack: 1
   _cooldown: 1.5
   _forAllFirstAttackCooldown: 0.4
+  AutoStart: 1
 --- !u!61 &-6596638584541210134
 BoxCollider2D:
   m_ObjectHideFlags: 0

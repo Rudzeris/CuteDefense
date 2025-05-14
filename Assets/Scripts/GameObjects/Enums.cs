@@ -5,7 +5,8 @@
         None,
         Player,
         Sheep,
-        Chicken
+        Chicken,
+        Pig
     }
     public enum EnemyType
     {

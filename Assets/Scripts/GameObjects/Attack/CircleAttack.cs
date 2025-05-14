@@ -1,0 +1,51 @@
+﻿using Assets.Scripts.GameObjects.Fractions;
+using System;
+using System.Collections;
+using UnityEngine;
+
+namespace Assets.Scripts.GameObjects.Attack
+{
+    public class CircleAttack : BasicAttack
+    {
+
+        public override event Action OnAttacking;
+        public override event Action<bool> OnViewEnemy;
+        protected override IEnumerator Attack()
+        {
+            while (IsAttack)
+            {
+                bool attackedAtLeastOne = false;
+
+                // Находим всех противников в радиусе
+                Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, DistanceAttack);
+                foreach (Collider2D col in colliders)
+                {
+                    IFraction fraction = col.GetComponent<IFraction>();
+                    IBasicEntity entity = col.GetComponent<IBasicEntity>();
+
+                    if (fraction != null && entity != null &&
+                        fraction.Fraction != this.Fraction.Fraction &&
+                        CheckEntity(entity))
+                    {
+                        entity.TakeDamage(this.Damage);
+                        attackedAtLeastOne = true;
+                    }
+                }
+
+                // Вызов события атаки (если кого-то атаковали)
+                if (attackedAtLeastOne)
+                {
+                    OnAttacking?.Invoke();
+                    OnViewEnemy?.Invoke(true);
+                    yield return new WaitForSeconds(Cooldown); // Ждём откат
+                }
+                else
+                {
+                    OnViewEnemy?.Invoke(false);
+                    yield return null; // Ждём следующего кадра
+                }
+            }
+        }
+
+    }
+}

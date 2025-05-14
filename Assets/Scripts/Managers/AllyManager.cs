@@ -48,46 +48,7 @@ namespace Assets.Scripts.Managers
         {
             while (Status == EStatusManager.Started)
             {
-                /*RaycastHit2D hit = Physics2D.Raycast(
-                    Camera.main.ScreenToWorldPoint(Input.mousePosition),
-                    Vector2.zero,
-                    Mathf.Infinity,
-                    CellTileMask
-                );
-                if (hit.collider?.GetComponent<Cell>() is Cell cell && cell.IsEmpty && LevelManager.UIManager.IsSelect && PlacementObjects.Count > 0)
-                {
-                    if (Input.GetMouseButtonDown(0))
-                    {
-                        var pair = PlacementObjects.Find(match => match.Key == LevelManager.UIManager.Unit.Type);
-                        GameObject gObject = pair.Key != AllyType.None ? pair.Value : null;
-                        int cost = LevelManager.UIManager.Unit.Cost;
-                        if (gObject == null)
-                        {
-                            Debug.LogError("AlliedCellManager: AlliedUnits");
-                        }
-                        else
-                        {
-                            if (LevelManager.StateManager.IsEnergy(cost))
-                            {
-                                var obj = Instantiate(gObject,
-                                    hit.collider.transform.position,
-                                Quaternion.identity
-                                );
-                                if (obj != null)
-                                {
-                                    Debug.Log($"AllyEntity Instantiate");
-                                    LevelManager.StateManager.ChangeEnergy(-cost);
-                                    obj.transform.parent = null;
-                                    //if (obj.GetComponent<IBasicEntity>() is IBasicEntity ucontrol)
-                                        //cell.AddObject(ucontrol);
-                                    foreach (var i in obj.GetComponents<IController>())
-                                        i.Startup();
-                                    OnSpawned?.Invoke();
-                                }
-                            }
-                        }
-                    }
-                }*/
+                
                 if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject() && LevelManager.StateManager.IsEnergy(selectObject.Cost) && selectObject.TypeObject.Key != AllyType.None)
                 {
                     bool spawn = true;
