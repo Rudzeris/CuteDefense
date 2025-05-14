@@ -25,26 +25,24 @@ namespace Assets.Scripts.Managers
 
         public void Startup()
         {
-            Status = EStatusManager.Initializing;
-            foreach (IBase i in bases)
-                if (i is MonoBehaviour mono && mono?.GetComponent<IFraction>() is IFraction fraction)
-                {
-                    switch (fraction.Fraction)
-                    {
-                        case FractionType.Ally:
-                            i.OnDestroyed += AllyBaseDestroyed;
-                            break;
-                        case FractionType.Enemy:
-                            i.OnDestroyed += EnemyBaseDestroyed;
-                            break;
-                    }
-                    countBases[fraction.Fraction] += 1;
-                }
             Status = EStatusManager.Started;
         }
         public void AddBase(IBase ibase)
         {
             bases.Add(ibase);
+            if (ibase is MonoBehaviour mono && mono?.GetComponent<IFraction>() is IFraction fraction)
+            {
+                switch (fraction.Fraction)
+                {
+                    case FractionType.Ally:
+                        ibase.OnDestroyed += AllyBaseDestroyed;
+                        break;
+                    case FractionType.Enemy:
+                        ibase.OnDestroyed += EnemyBaseDestroyed;
+                        break;
+                }
+                countBases[fraction.Fraction] += 1;
+            }
         }
         private void EndGameCheck()
         {

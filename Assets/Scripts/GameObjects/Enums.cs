@@ -6,12 +6,18 @@
         Player,
         Sheep,
         Chicken,
-        Pig
+        Pig,
+        Cow
     }
     public enum EnemyType
     {
         None,
         Skeleton
     }
+    public enum ActivateType
+    {
+        None,Cpw
+    }
+
     public enum Direction2 { None, Left, Right };
 }

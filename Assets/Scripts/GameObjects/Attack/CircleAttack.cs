@@ -12,7 +12,7 @@ namespace Assets.Scripts.GameObjects.Attack
         public override event Action<bool> OnViewEnemy;
         protected override IEnumerator Attack()
         {
-            while (IsAttack)
+            while (IsActive)
             {
                 bool attackedAtLeastOne = false;
 

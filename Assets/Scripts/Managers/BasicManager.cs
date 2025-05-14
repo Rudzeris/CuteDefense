@@ -9,9 +9,12 @@ namespace Assets.Scripts.Managers
         private static System.Random _random = new System.Random();
         public static int Next(int begin, int end) => _random.Next(begin, end);
     }
-    public abstract class BasicManager : MonoBehaviour
+    public abstract class BasicManager : MonoBehaviour, IManager
     {
         protected List<IManager> managers = new List<IManager>();
+
+        public EStatusManager Status { get; private set; }
+
         protected virtual void Start()
         {
             StartGame();
@@ -20,10 +23,11 @@ namespace Assets.Scripts.Managers
         public void EndGame() => StartCoroutine(ShutdownManagers());
         protected virtual IEnumerator StartupManagers()
         {
+            Status = EStatusManager.Initializing;
             foreach (IManager manager in managers)
                 manager.Startup();
             yield return null;
-            for (int i = 0, last = 0; i < managers.Count; i = 0)
+            for (int i = 0, last = 0; last < managers.Count; i = 0)
             {
                 foreach (IManager manager in managers)
                     if (manager.Status == EStatusManager.Started) i++;
@@ -34,16 +38,18 @@ namespace Assets.Scripts.Managers
                 }
                 yield return null;
             }
+            Status = EStatusManager.Started;
         }
         protected virtual IEnumerator ShutdownManagers()
         {
+            Status = EStatusManager.Initializing;
             foreach (IManager manager in managers)
-                manager.Startup();
+                manager.Shutdown();
             yield return null;
-            for (int i = 0, last = 0; i < managers.Count; i = 0)
+            for (int i = 0, last = 0; last < managers.Count; i = 0)
             {
                 foreach (IManager manager in managers)
-                    if (manager.Status == EStatusManager.Started) i++;
+                    if (manager.Status == EStatusManager.Shutdown) i++;
                 if (i > last)
                 {
                     last = i;
@@ -51,6 +57,17 @@ namespace Assets.Scripts.Managers
                 }
                 yield return null;
             }
+            Status = EStatusManager.Shutdown;
+        }
+
+        public void Startup()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void Shutdown()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

@@ -20,6 +20,7 @@ namespace Assets.Scripts.GameObjects
         public bool AutoStart = true;
         protected IFraction Fraction { get; private set; }
         protected ITarget Target { get; private set; }
+        public bool IsActive { get; private set; } = false;
         public bool IsAttack { get; private set; } = false;
 
         public int Damage => _damage;
@@ -46,8 +47,9 @@ namespace Assets.Scripts.GameObjects
         protected virtual IEnumerator Attack()
         {
             // Ищет противника в одной линии и атакует
+            IsAttack = true;
             IBasicEntity enemyEntity = null;
-            while (IsAttack)
+            while (IsActive)
             {
                 if (enemyEntity == null)
                 {
@@ -81,6 +83,7 @@ namespace Assets.Scripts.GameObjects
                 else
                     yield return null;
             }
+            IsAttack = false;
         }
         // Проверка BasicEntity - атакуем ли его или нет
         protected bool CheckEntity(IBasicEntity entity)
@@ -90,12 +93,12 @@ namespace Assets.Scripts.GameObjects
 
         public void Startup()
         {
-            if (!IsAttack)
+            if (!IsActive)
             {
-                IsAttack = true;
+                IsActive = true;
                 StartCoroutine(Attack());
             }
         }
-        public void Shutdown() => IsAttack = false;
+        public void Shutdown() => IsActive = false;
     }
 }

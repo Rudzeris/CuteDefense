@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.GameObjects.Fractions;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -22,12 +23,16 @@ namespace Assets.Scripts.Managers
         public void EndGame(FractionType type)
         {
             Debug.Log($"Win: {type}");
-            ReloadScene();
+            StartCoroutine(ReloadScene());
         }
 
-        public void ReloadScene()
+        public IEnumerator ReloadScene()
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            var level = GetComponent<LevelManager>();
+            level.EndGame();
+            while (level.Status != EStatusManager.Shutdown)
+                yield return null;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }

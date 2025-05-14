@@ -20,7 +20,7 @@ namespace Assets.Scripts.GameObjects
         {
             _hp = Math.Clamp(_hp - damage, 0, _hp);
             OnTakenDamage?.Invoke(this, damage);
-            if (_hp == 0)
+            if (_hp == 0 && !IsDestroyed)
             {
                 StartCoroutine(Destroyed());
             }

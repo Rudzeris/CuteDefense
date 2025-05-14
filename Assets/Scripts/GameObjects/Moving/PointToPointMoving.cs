@@ -1,17 +1,25 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Assets.Scripts.GameObjects.Moving
 {
-    public class PointToPointMoving : MonoBehaviour, IController
+    public class PointToPointMoving : MonoBehaviour, IController, IBasicEntity
     {
         [Header("Movement Settings")]
         public GameObject fromObject;         // Откуда летит
+        public Vector3 fromPoint;         // Откуда летит
         public float speed = 5f;              // Скорость падения
         public float destroyDelay = 0f;       // Задержка перед уничтожением
         private BasicAttack controller;
         private bool isMoving = false;
         private Vector3 targetPoint;           // Куда приземлиться
+
+        public int HP => 0;
+
+        public event Action<IBasicEntity, int> OnTakenDamage;
+        public event Action<IBasicEntity> OnDestroyed;
+
         private void Start()
         {
             controller = GetComponent<BasicAttack>();
@@ -27,13 +35,15 @@ namespace Assets.Scripts.GameObjects.Moving
             while (Vector3.Distance(transform.position, targetPoint) > 0.05f)
             {
                 transform.position = Vector3.MoveTowards(transform.position, targetPoint, speed * Time.deltaTime);
+                transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.y / 100);
                 yield return null;
             }
 
-            transform.position = targetPoint;
+            transform.position = new Vector3(targetPoint.x, targetPoint.y, targetPoint.y / 100);
 
             if (destroyDelay > 0f)
                 yield return new WaitForSeconds(destroyDelay);
+            OnTakenDamage?.Invoke(this, 0);
             controller.Startup();
         }
 
@@ -47,7 +57,10 @@ namespace Assets.Scripts.GameObjects.Moving
             }
             controller?.Shutdown();
             targetPoint = transform.position;
-            transform.position = fromObject.transform.position;
+            if (fromObject != null)
+                transform.position = fromObject.transform.position;
+            else
+                transform.position = fromPoint;
             if (!isMoving)
                 StartCoroutine(MoveDownward());
         }
@@ -55,7 +68,13 @@ namespace Assets.Scripts.GameObjects.Moving
         public void Shutdown()
         {
             isMoving = false;
+            OnDestroyed?.Invoke(this);
             Destroy(gameObject);
+        }
+
+        public void TakeDamage(int damage)
+        {
+            throw new NotImplementedException();
         }
     }
 }

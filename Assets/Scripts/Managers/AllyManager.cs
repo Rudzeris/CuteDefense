@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 
 namespace Assets.Scripts.Managers
 {
-    public enum PlacementType { OnCell, Anywhere }
+    public enum PlacementType { OnCell, Anywhere, Activate }
     [Serializable]
     public struct TypeObject<TKey, TValue>
     {
@@ -22,6 +22,7 @@ namespace Assets.Scripts.Managers
         public LayerMask CellTileMask;
         public event Action OnSpawned;
         public EStatusManager Status { get; private set; }
+        public Vector3 SpawnActivateObjects;
         private (TypeObject<AllyType, GameObject> TypeObject, int Cost) selectObject;
 
         public void Shutdown()
@@ -48,11 +49,11 @@ namespace Assets.Scripts.Managers
         {
             while (Status == EStatusManager.Started)
             {
-                
+
                 if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject() && LevelManager.StateManager.IsEnergy(selectObject.Cost) && selectObject.TypeObject.Key != AllyType.None)
                 {
                     bool spawn = true;
-                    Vector3 clickPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    Vector3 clickPoint = selectObject.TypeObject.PlacementType == PlacementType.Activate ? SpawnActivateObjects : Camera.main.ScreenToWorldPoint(Input.mousePosition);
                     Cell cell = null;
                     if (selectObject.TypeObject.PlacementType == PlacementType.OnCell)
                     {
