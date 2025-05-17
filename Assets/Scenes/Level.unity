@@ -292,7 +292,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1761417746307676949, guid: 6321fa7bebf571d449fe74ed2cdc808f, type: 3}
       propertyPath: m_Name
-      value: UnitButton (2)
+      value: ChickenSelect
       objectReference: {fileID: 0}
     - target: {fileID: 4147677651922795642, guid: 6321fa7bebf571d449fe74ed2cdc808f, type: 3}
       propertyPath: m_text
@@ -426,7 +426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb55a3a1d8d65794da41a71da5de923c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _energy: 150
+  _energy: 30
 --- !u!114 &170953569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -458,7 +458,7 @@ MonoBehaviour:
   - Key: 1
     Value: {fileID: 6696142712972188941, guid: 65e0bccbfd275b848855bcbcc198063b, type: 3}
     PlacementType: 0
-  Cooldown: 6
+  Cooldown: 9
   FirstEntitySpawnCooldown: 4
 --- !u!114 &170953571
 MonoBehaviour:
@@ -18344,7 +18344,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1761417746307676949, guid: 6321fa7bebf571d449fe74ed2cdc808f, type: 3}
       propertyPath: m_Name
-      value: UnitButton (4)
+      value: CowSelect
       objectReference: {fileID: 0}
     - target: {fileID: 4147677651922795642, guid: 6321fa7bebf571d449fe74ed2cdc808f, type: 3}
       propertyPath: m_text
@@ -18958,7 +18958,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1761417746307676949, guid: 6321fa7bebf571d449fe74ed2cdc808f, type: 3}
       propertyPath: m_Name
-      value: UnitButton (1)
+      value: SheepSelect
       objectReference: {fileID: 0}
     - target: {fileID: 4147677651922795642, guid: 6321fa7bebf571d449fe74ed2cdc808f, type: 3}
       propertyPath: m_text
@@ -19814,7 +19814,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1761417746307676949, guid: 6321fa7bebf571d449fe74ed2cdc808f, type: 3}
       propertyPath: m_Name
-      value: UnitButton (3)
+      value: PigSelect
       objectReference: {fileID: 0}
     - target: {fileID: 4147677651922795642, guid: 6321fa7bebf571d449fe74ed2cdc808f, type: 3}
       propertyPath: m_text
@@ -20027,7 +20027,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1761417746307676949, guid: 6321fa7bebf571d449fe74ed2cdc808f, type: 3}
       propertyPath: m_Name
-      value: UnitButton
+      value: PlayerSelect
       objectReference: {fileID: 0}
     - target: {fileID: 4147677651922795642, guid: 6321fa7bebf571d449fe74ed2cdc808f, type: 3}
       propertyPath: m_text
