@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.GameObjects.Attacks
 {
-    public class CircleAttack : BasicAttack
+    public class CircleAttack : DamageAttack
     {
 
         public override event Action OnAttacking;
@@ -33,18 +33,17 @@ namespace Assets.Scripts.GameObjects.Attacks
                     }
                 }
 
-                // Вызов события атаки (если кого-то атаковали)
                 if (attackedAtLeastOne)
                 {
                     OnAttacking?.Invoke();
                     OnViewEnemy?.Invoke(true);
-                    yield return new WaitForSeconds(Cooldown); // Ждём откат
+                    Shutdown();
                 }
                 else
                 {
                     OnViewEnemy?.Invoke(false);
-                    yield return null; // Ждём следующего кадра
                 }
+                yield return null;
             }
         }
 

@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 4871223929525997207}
   - component: {fileID: 9199890812882152283}
   - component: {fileID: 7828399877703493467}
+  - component: {fileID: 503307389659823262}
   - component: {fileID: 4768790759533790455}
   - component: {fileID: -2723254253026680199}
-  - component: {fileID: -2721151987997038101}
   - component: {fileID: -1427987985874589333}
   - component: {fileID: 550643739679336704}
   m_Layer: 7
@@ -138,6 +138,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hp: 5
+--- !u!114 &503307389659823262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8967658965596200605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e357f2f0952439e4c843af567832b0cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _distanceAttack: 0.4
+  AutoStart: 1
+  damage: 3
+  _cooldown: 2
+  _forAllFirstAttackCooldown: 0.4
 --- !u!114 &4768790759533790455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,23 +184,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2e79513d9570547b9ac9237908e0c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-2721151987997038101
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8967658965596200605}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45ee9a246e275f54aa1f494686ffaaae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _damage: 3
-  _distanceAttack: 1
-  _cooldown: 2
-  _forAllFirstAttackCooldown: 0.4
-  AutoStart: 1
 --- !u!61 &-1427987985874589333
 BoxCollider2D:
   m_ObjectHideFlags: 0

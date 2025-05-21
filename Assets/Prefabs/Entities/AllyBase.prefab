@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4764847814373660480}
   - component: {fileID: 7776556111630039184}
   - component: {fileID: -545941094646446547}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AllyBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}

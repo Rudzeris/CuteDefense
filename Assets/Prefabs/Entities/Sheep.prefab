@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: -3001239130258792105}
   - component: {fileID: -2071434036789318129}
   - component: {fileID: -6331510504153798247}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sheep
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7dcb57d2fb8d2743b435a6fafa37867, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hp: 3
+  _hp: 5
 --- !u!114 &1811423434593780249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,10 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45ee9a246e275f54aa1f494686ffaaae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 3
-  _distanceAttack: 1
-  _cooldown: 1.5
-  _forAllFirstAttackCooldown: 0.4
+  _distanceAttack: 0.4
   AutoStart: 1
 --- !u!114 &-3001239130258792105
 MonoBehaviour:
@@ -181,7 +178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: 2
-  _maxSpeed: 1
+  _maxSpeed: 3
   _acceleration: 1
   _deceleration: 10
   _currentSpeed: 0

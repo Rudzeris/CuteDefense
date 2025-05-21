@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4441131593068904700}
   - component: {fileID: 1401121527122532463}
   - component: {fileID: -2485160524338924613}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,11 +149,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cb3503bda5fe0a478ba59523f5701fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 10
   _distanceAttack: 1
-  _cooldown: 1.5
-  _forAllFirstAttackCooldown: 0.4
   AutoStart: 0
+  damage: 5
 --- !u!114 &1401121527122532463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,7 +189,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3259784145469126205}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}

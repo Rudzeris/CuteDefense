@@ -13,11 +13,11 @@ GameObject:
   - component: {fileID: 3367921973088912949}
   - component: {fileID: 4089175817236447216}
   - component: {fileID: 5629087544295337364}
-  - component: {fileID: 6515318344048437825}
+  - component: {fileID: 7096497912820673347}
   - component: {fileID: 2123802462780615968}
   - component: {fileID: 7329152444069009989}
   - component: {fileID: 9143067162434216906}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,7 +141,7 @@ MonoBehaviour:
   _acceleration: 10
   _deceleration: 10
   _currentSpeed: 0
---- !u!114 &6515318344048437825
+--- !u!114 &7096497912820673347
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -150,14 +150,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6081084199373771312}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45ee9a246e275f54aa1f494686ffaaae, type: 3}
+  m_Script: {fileID: 11500000, guid: 104eb4c5a3d00124ebfbfa356af2486e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 3
-  _distanceAttack: 1
-  _cooldown: 1.5
-  _forAllFirstAttackCooldown: 0.4
+  _distanceAttack: 0.5
   AutoStart: 1
+  damage: 50
 --- !u!114 &2123802462780615968
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -16,18 +16,19 @@ namespace Assets.Scripts.GameObjects.Attacks
 
         protected override IEnumerator Attack()
         {
-            GameObject enemy = null;
-            while (enemy == null)
+            bool attacking = false;
+            while (!attacking && IsActive)
             {
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, DistanceAttack, gameObject.layer);
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, DistanceAttack);
 
-                if (hit.collider != null && hit.collider?.GetComponent<IFraction>()?.Fraction != this.Fraction.Fraction)
+                if (hit.collider != null && (hit.collider?.GetComponent<IFraction>()?.Fraction ?? this.Fraction.Fraction) != this.Fraction.Fraction)
                 {
-                    OnViewEnemy?.Invoke(true);
                     if (hit.collider?.GetComponent<IBasicEntity>() is IBasicEntity entity && CheckEntity(entity))
                     {
+                        OnViewEnemy?.Invoke(true);
                         entity.TakeDamage(Damage);
                         OnAttacking?.Invoke();
+                        attacking = true;
                     }
                 }
 

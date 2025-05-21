@@ -13,21 +13,12 @@ namespace Assets.Scripts.GameObjects.Attacks
         public virtual event Action OnAttacking;
         public virtual event Action<bool> OnViewEnemy;
         [Header("BasicAttack Parameters")]
-        [SerializeField] private int _damage = 3;
         [SerializeField] private float _distanceAttack = 1f;
-        [Header("Cooldown Parameters")]
-        [SerializeField] private float _cooldown = 1.5f;
-        [SerializeField] private float _forAllFirstAttackCooldown = 0.4f;
         public bool AutoStart = true;
         protected IFraction Fraction { get; private set; }
         protected ITarget Target { get; private set; }
         public bool IsActive { get; private set; } = false;
-        public bool IsAttack { get; private set; } = false;
-
-        public int Damage => _damage;
         public float DistanceAttack => _distanceAttack;
-        public float Cooldown => _cooldown;
-        public float ForAllFirstAttackCooldown => _forAllFirstAttackCooldown;
 
         private void Awake()
         {
@@ -36,7 +27,7 @@ namespace Assets.Scripts.GameObjects.Attacks
         }
         private void Start()
         {
-            if(AutoStart)
+            if (AutoStart)
                 Startup();
         }
         private void OnDrawGizmos()
@@ -47,44 +38,26 @@ namespace Assets.Scripts.GameObjects.Attacks
         }
         protected virtual IEnumerator Attack()
         {
-            // Ищет противника в одной линии и атакует
-            IsAttack = true;
-            IBasicEntity enemyEntity = null;
-            while (IsActive)
+            bool attacking = false;
+            while (!attacking && IsActive)
             {
-                if (enemyEntity == null)
-                {
-                    RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Mathf.Sign(transform.localScale.x) == -1 ? Vector2.left : Vector2.right, _distanceAttack);
+                RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector2.right, DistanceAttack);
 
-                    enemyEntity = null;
-                    foreach (RaycastHit2D hit in hits)
+                foreach (RaycastHit2D hit in hits)
+                    if (hit.collider != null && (hit.collider?.GetComponent<IFraction>()?.Fraction ?? this.Fraction.Fraction) != this.Fraction.Fraction)
                     {
-                        if (hit.collider != null && hit.collider.GetComponent<IFraction>()?.Fraction != this.Fraction.Fraction)
+                        if (hit.collider?.GetComponent<IBasicEntity>() is IBasicEntity entity && CheckEntity(entity))
                         {
-                            enemyEntity = hit.collider.GetComponent<IBasicEntity>();
-                            if (enemyEntity != null && CheckEntity(enemyEntity))
-                            {
-                                break;
-                            }
-                            else enemyEntity = null;
+                            OnViewEnemy?.Invoke(true);
+                            entity?.TakeDamage(entity.HP);
+                            OnAttacking?.Invoke();
+                            attacking = true;
+                            break;
                         }
                     }
-                    OnViewEnemy?.Invoke(enemyEntity != null);
 
-                    if (enemyEntity != null) // Если спереди челик, то 1-я атака ждет
-                        yield return new WaitForSeconds(_forAllFirstAttackCooldown);
-                }
-                if (enemyEntity != null)
-                {
-                    enemyEntity?.TakeDamage(this.Damage);
-                    OnAttacking?.Invoke();
-                    enemyEntity = null;
-                    yield return new WaitForSeconds(Cooldown);
-                }
-                else
-                    yield return null;
+                yield return null;
             }
-            IsAttack = false;
         }
         // Проверка BasicEntity - атакуем ли его или нет
         protected bool CheckEntity(IBasicEntity entity)

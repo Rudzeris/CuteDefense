@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2520075244308674902}
   - component: {fileID: -5556613011027813968}
   - component: {fileID: 1804009563780687702}
-  - component: {fileID: -6740970904761417990}
+  - component: {fileID: -5562086181725679078}
   - component: {fileID: -6596638584541210134}
   - component: {fileID: 9020210111941919104}
   m_Layer: 7
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86ba733798215964fb5aa880674bdcac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-6740970904761417990
+--- !u!114 &-5562086181725679078
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -176,14 +176,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 6696142712972188941}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45ee9a246e275f54aa1f494686ffaaae, type: 3}
+  m_Script: {fileID: 11500000, guid: e357f2f0952439e4c843af567832b0cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 3
-  _distanceAttack: 1
+  _distanceAttack: 0.4
+  AutoStart: 1
+  damage: 3
   _cooldown: 1.5
   _forAllFirstAttackCooldown: 0.4
-  AutoStart: 1
 --- !u!61 &-6596638584541210134
 BoxCollider2D:
   m_ObjectHideFlags: 0

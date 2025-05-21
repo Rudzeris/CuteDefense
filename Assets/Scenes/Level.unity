@@ -159,10 +159,10 @@ RectTransform:
   - {fileID: 454688060}
   m_Father: {fileID: 835888996}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 46.929, y: 0}
-  m_SizeDelta: {x: 93.8581, y: 404}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 60, y: -115}
+  m_SizeDelta: {x: 90, y: 210}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &72036096
 MonoBehaviour:
@@ -426,7 +426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb55a3a1d8d65794da41a71da5de923c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _energy: 30
+  _energy: 150
 --- !u!114 &170953569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -483,7 +483,6 @@ GameObject:
   - component: {fileID: 374722784}
   - component: {fileID: 374722786}
   - component: {fileID: 374722785}
-  - component: {fileID: 374722787}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -15999,42 +15998,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!19719996 &374722787
-TilemapCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 374722783}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_MaximumTileChangeCount: 1000
-  m_ExtrusionFactor: 0
-  m_UseDelaunayMesh: 0
 --- !u!1 &376950042
 GameObject:
   m_ObjectHideFlags: 0
@@ -20064,7 +20027,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 672612964654478469, guid: d09d42e7e7ef5924bbe228317d1fc069, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.003021973
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 672612964654478469, guid: d09d42e7e7ef5924bbe228317d1fc069, type: 3}
       propertyPath: m_LocalRotation.w
