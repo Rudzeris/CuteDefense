@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace Assets.Scripts.GameObjects
+namespace Assets.Scripts.GameObjects.Entities
 {
     public interface IBasicEntity
     {
-        event Action<IBasicEntity,int> OnTakenDamage;
+        event Action<IBasicEntity, int> OnTakenDamage;
         event Action<IBasicEntity> OnDestroyed;
         int HP { get; }
         void TakeDamage(int damage);

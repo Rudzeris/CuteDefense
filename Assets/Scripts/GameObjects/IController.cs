@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.GameObjects.Entities;
+using System;
 
 namespace Assets.Scripts.GameObjects
 {

@@ -3,7 +3,7 @@ using System.Collections;
 using Assets.Scripts.GameObjects.Fractions;
 using UnityEngine;
 
-namespace Assets.Scripts.GameObjects
+namespace Assets.Scripts.GameObjects.Entities
 {
     [RequireComponent(typeof(IFraction))]
     [RequireComponent(typeof(Collider2D))]

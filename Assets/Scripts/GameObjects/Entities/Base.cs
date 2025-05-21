@@ -1,6 +1,6 @@
 ﻿using Assets.Scripts.Managers;
 
-namespace Assets.Scripts.GameObjects
+namespace Assets.Scripts.GameObjects.Entities
 {
     public class Base : BasicEntity, IBase
     {

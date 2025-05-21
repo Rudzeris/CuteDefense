@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.GameObjects;
+using Assets.Scripts.GameObjects.Entities;
 using Assets.Scripts.Level;
 using System;
 using System.Collections;

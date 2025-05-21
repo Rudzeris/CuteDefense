@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.GameObjects.Entities;
+using UnityEngine;
 
-namespace Assets.Scripts.GameObjects.Attack
+namespace Assets.Scripts.GameObjects.Attacks
 {
     public class Target : MonoBehaviour, ITarget
     {

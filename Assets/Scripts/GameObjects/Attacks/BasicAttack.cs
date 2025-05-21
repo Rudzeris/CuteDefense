@@ -1,9 +1,10 @@
-﻿using Assets.Scripts.GameObjects.Fractions;
+﻿using Assets.Scripts.GameObjects.Entities;
+using Assets.Scripts.GameObjects.Fractions;
 using System;
 using System.Collections;
 using UnityEngine;
 
-namespace Assets.Scripts.GameObjects
+namespace Assets.Scripts.GameObjects.Attacks
 {
     [RequireComponent(typeof(IFraction))]
     [RequireComponent(typeof(ITarget))]

@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Assets.Scripts.GameObjects.Attacks;
+using System;
 using System.Collections;
 using UnityEngine;
 
-namespace Assets.Scripts.GameObjects
+namespace Assets.Scripts.GameObjects.Entities
+
 {
     [RequireComponent(typeof(BasicAttack))]
     public class DestroyOnAttack : MonoBehaviour, IBasicEntity

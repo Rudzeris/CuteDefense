@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.GameObjects;
+using Assets.Scripts.GameObjects.Entities;
 using Assets.Scripts.GameObjects.Fractions;
 using System;
 using System.Collections.Generic;

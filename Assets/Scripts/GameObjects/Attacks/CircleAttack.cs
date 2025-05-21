@@ -1,9 +1,10 @@
-﻿using Assets.Scripts.GameObjects.Fractions;
+﻿using Assets.Scripts.GameObjects.Entities;
+using Assets.Scripts.GameObjects.Fractions;
 using System;
 using System.Collections;
 using UnityEngine;
 
-namespace Assets.Scripts.GameObjects.Attack
+namespace Assets.Scripts.GameObjects.Attacks
 {
     public class CircleAttack : BasicAttack
     {

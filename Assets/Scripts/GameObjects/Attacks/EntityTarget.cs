@@ -1,4 +1,6 @@
-﻿namespace Assets.Scripts.GameObjects.Attack
+﻿using Assets.Scripts.GameObjects.Entities;
+
+namespace Assets.Scripts.GameObjects.Attacks
 {
     public class EntityTarget : Target
     {
