@@ -6,6 +6,7 @@ namespace Assets.Scripts.GameObjects.Entities
     {
         event Action<IBasicEntity, int> OnTakenDamage;
         event Action<IBasicEntity> OnDestroyed;
+        int MaxHP { get; }
         int HP { get; }
         void TakeDamage(int damage);
     }

@@ -1,21 +1,26 @@
-﻿using Assets.Scripts.GameObjects;
-using Assets.Scripts.GameObjects.Entities;
+﻿using Assets.Scripts.GameObjects.Entities;
 using Assets.Scripts.GameObjects.Fractions;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Assets.Scripts.Managers
 {
+    public struct HP
+    {
+        public int MaxHP { get; set; }
+        public int Hp { get; set; }
+    }
     public class BaseManager : MonoBehaviour, IManager
     {
+        public event Action<Func<FractionType,HP>> OnUpdateHP;
         public event Action<FractionType> OnEndingGame;
-        private List<IBase> bases = new List<IBase>();
-        private Dictionary<FractionType, int> countBases = new Dictionary<FractionType, int>()
+        private Dictionary<FractionType, List<IBase>> countBases = new Dictionary<FractionType, List<IBase>>()
         {
-            {FractionType.None,0},
-            {FractionType.Ally,0},
-            {FractionType.Enemy,0}
+            {FractionType.None,new List<IBase>()},
+            {FractionType.Ally,new List<IBase>()},
+            {FractionType.Enemy,new List<IBase>()}
         };
         public EStatusManager Status { get; private set; }
 
@@ -30,7 +35,6 @@ namespace Assets.Scripts.Managers
         }
         public void AddBase(IBase ibase)
         {
-            bases.Add(ibase);
             if (ibase is MonoBehaviour mono && mono?.GetComponent<IFraction>() is IFraction fraction)
             {
                 switch (fraction.Fraction)
@@ -42,16 +46,26 @@ namespace Assets.Scripts.Managers
                         ibase.OnDestroyed += EnemyBaseDestroyed;
                         break;
                 }
-                countBases[fraction.Fraction] += 1;
+                countBases[fraction.Fraction].Add(ibase);
+                ibase.OnTakenDamage += (e, d) => OnUpdateHP?.Invoke(GetBaseHPInfo);
             }
+        }
+        private HP GetBaseHPInfo(FractionType type)
+        {
+            int currentHp = 0, maxHp = 0;
+            if (countBases.ContainsKey(type))
+                (currentHp, maxHp) = (
+                    countBases[type].Select(e => e.HP).Sum(),
+                    countBases[type].Select(e => e.MaxHP).Sum());
+            return new HP { Hp = currentHp, MaxHP = maxHp };
         }
         private void EndGameCheck()
         {
             bool allyDef = false;
             bool enemyDef = false;
-            if (countBases[FractionType.Ally] == 0)
+            if (countBases[FractionType.Ally].Count == 0)
                 allyDef = true;
-            if (countBases[FractionType.Enemy] == 0)
+            if (countBases[FractionType.Enemy].Count == 0)
                 enemyDef = true;
 
             if (allyDef && enemyDef)
@@ -65,8 +79,7 @@ namespace Assets.Scripts.Managers
         {
             if (entity is IBase eBase)
             {
-                bases.Remove(eBase);
-                countBases[FractionType.Ally] -= 1;
+                countBases[FractionType.Ally].Remove(eBase);
                 Debug.Log("Ally base destroyed");
                 EndGameCheck();
             }
@@ -75,8 +88,7 @@ namespace Assets.Scripts.Managers
         {
             if (entity is IBase eBase)
             {
-                bases.Remove(eBase);
-                countBases[FractionType.Enemy] -= 1;
+                countBases[FractionType.Enemy].Remove(eBase);
                 Debug.Log("Enemy base destroyed");
                 EndGameCheck();
             }

@@ -14,6 +14,8 @@ namespace Assets.Scripts.GameObjects.Entities
 
         public int HP => 0;
 
+        public int MaxHP => 0;
+
         public event Action<IBasicEntity, int> OnTakenDamage;
 
         public event Action<IBasicEntity> OnDestroyed;

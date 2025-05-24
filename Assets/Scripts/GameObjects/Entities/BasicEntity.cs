@@ -16,6 +16,13 @@ namespace Assets.Scripts.GameObjects.Entities
         public bool IsDestroyed { get; private set; }
         public int HP => _hp;
 
+        public int MaxHP { get; private set; }
+
+        private void Awake()
+        {
+            MaxHP = _hp;
+        }
+
         public void TakeDamage(int damage)
         {
             _hp = Math.Clamp(_hp - damage, 0, _hp);
