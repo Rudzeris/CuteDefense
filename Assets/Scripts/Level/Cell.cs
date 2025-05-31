@@ -6,6 +6,7 @@ namespace Assets.Scripts.Level
 {
     public class Cell : MonoBehaviour
     {
+        public bool IsAnchor = true;
         public bool IsEmpty { get; private set; } = true;
         private IBasicEntity target;
         public void AddObject(IBasicEntity obj)
@@ -17,7 +18,8 @@ namespace Assets.Scripts.Level
             }
             if (obj == null)
                 throw new ArgumentNullException("obj is null");
-            Select(obj);
+            if (IsAnchor)
+                Select(obj);
             target.OnDestroyed += (_) => Unselect();
         }
         private void Select(IBasicEntity unitControl)

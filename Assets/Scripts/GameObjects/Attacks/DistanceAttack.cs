@@ -14,8 +14,8 @@ namespace Assets.Scripts.GameObjects.Attacks
         public GameObject Bullet;
         private void OnDrawGizmos()
         {
-            Gizmos.color = Color.red;
-            Gizmos.DrawLine(BulletSpawnPoint, new Vector3(transform.position.x + DistanceAttack * Mathf.Sign(transform.localScale.x)
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(transform.position + BulletSpawnPoint, new Vector3(transform.position.x + DistanceAttack * Mathf.Sign(transform.localScale.x)
                 , transform.position.y, transform.position.z));
         }
         protected override IEnumerator Attack()
@@ -48,10 +48,9 @@ namespace Assets.Scripts.GameObjects.Attacks
                 }
                 if (enemyEntity != null)
                 {
-                    GameObject obj = Instantiate(Bullet, BulletSpawnPoint, Quaternion.identity);
+                    GameObject obj = Instantiate(Bullet, transform.position + BulletSpawnPoint, Quaternion.identity, this.gameObject.transform);
                     if (obj != null)
                     {
-                        obj.transform.parent = null;
                         OnAttacking?.Invoke();
                         enemyEntity = null;
 

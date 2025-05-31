@@ -7,7 +7,8 @@
         Sheep,
         Chicken,
         Pig,
-        Cow
+        Cow,
+        Sniper
     }
     public enum EnemyType
     {

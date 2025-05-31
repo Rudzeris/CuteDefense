@@ -9,7 +9,7 @@ using UnityEngine.EventSystems;
 
 namespace Assets.Scripts.Managers
 {
-    public enum PlacementType { OnCell, Anywhere, Activate }
+    public enum PlacementType { OnAnchorCell,OnCell, Anywhere, Activate }
     [Serializable]
     public struct TypeObject<TKey, TValue>
     {
@@ -56,7 +56,7 @@ namespace Assets.Scripts.Managers
                     bool spawn = true;
                     Vector3 clickPoint = selectObject.TypeObject.PlacementType == PlacementType.Activate ? SpawnActivateObjects : Camera.main.ScreenToWorldPoint(Input.mousePosition);
                     Cell cell = null;
-                    if (selectObject.TypeObject.PlacementType == PlacementType.OnCell)
+                    if (selectObject.TypeObject.PlacementType <= PlacementType.OnCell)
                     {
                         spawn = false;
                         RaycastHit2D[] hits = Physics2D.RaycastAll(
@@ -68,7 +68,7 @@ namespace Assets.Scripts.Managers
                         foreach (var hit in hits)
                         {
                             cell = hit.collider?.GetComponent<Cell>();
-                            if (cell != null)
+                            if (cell != null && cell.IsEmpty)
                             {
                                 spawn = true;
                                 clickPoint = cell.transform.position;
@@ -87,7 +87,7 @@ namespace Assets.Scripts.Managers
                             obj.transform.parent = null;
                             LevelManager.StateManager.ChangeEnergy(-selectObject.Cost);
                             OnSpawned?.Invoke();
-                            if (cell != null && GetComponent<IBasicEntity>() is IBasicEntity entity)
+                            if (cell != null && obj.GetComponent<IBasicEntity>() is IBasicEntity entity && selectObject.TypeObject.PlacementType == PlacementType.OnAnchorCell)
                             {
                                 cell.AddObject(entity);
                             }
