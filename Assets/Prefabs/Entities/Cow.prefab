@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 2709791947097174138}
   - component: {fileID: 3367921973088912949}
   - component: {fileID: 4089175817236447216}
-  - component: {fileID: 5629087544295337364}
   - component: {fileID: 7096497912820673347}
   - component: {fileID: 2123802462780615968}
   - component: {fileID: 7329152444069009989}
   - component: {fileID: 9143067162434216906}
+  - component: {fileID: 1182729799750758053}
   m_Layer: 7
   m_Name: Cow
   m_TagString: Untagged
@@ -124,23 +124,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95839a63610925d438e812f3a4fc73f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5629087544295337364
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6081084199373771312}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13092c6385fe51d4b8391356479c66fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  direction: 2
-  _maxSpeed: 3
-  _acceleration: 10
-  _deceleration: 10
-  _currentSpeed: 0
 --- !u!114 &7096497912820673347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,3 +175,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f86ce027f7fef9e41827de80e1b5eb1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1182729799750758053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6081084199373771312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 996dd2c3eeb7fca48a336df777d6cb8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isMove: 1
+  _currentSpeed: 3
+  _direction: 2

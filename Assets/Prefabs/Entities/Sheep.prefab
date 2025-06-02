@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: -7733025778969816071}
   - component: {fileID: 1811423434593780249}
   - component: {fileID: 4475769947852909939}
-  - component: {fileID: -3001239130258792105}
   - component: {fileID: -2071434036789318129}
   - component: {fileID: -6331510504153798247}
+  - component: {fileID: -3900309058977968887}
   m_Layer: 7
   m_Name: Sheep
   m_TagString: Untagged
@@ -165,23 +165,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _distanceAttack: 0.4
   AutoStart: 1
---- !u!114 &-3001239130258792105
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6335083600558817207}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13092c6385fe51d4b8391356479c66fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  direction: 2
-  _maxSpeed: 3
-  _acceleration: 1
-  _deceleration: 10
-  _currentSpeed: 0
 --- !u!61 &-2071434036789318129
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -239,3 +222,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f86ce027f7fef9e41827de80e1b5eb1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-3900309058977968887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6335083600558817207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccbbc772cc44fcf42bd41084b8453f87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isMove: 1
+  _currentSpeed: 0
+  _direction: 2
+  _maxSpeed: 2
+  _acceleration: 1
+  _deceleration: 8

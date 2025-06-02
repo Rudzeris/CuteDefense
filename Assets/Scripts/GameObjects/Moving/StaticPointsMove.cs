@@ -1,0 +1,38 @@
+﻿using System.Collections;
+using UnityEngine;
+
+namespace Assets.Scripts.GameObjects.Moving
+{
+    public class StaticPointsMove : AMovable
+    {
+        [SerializeField] protected Vector3[] _points;
+        [SerializeField] private int _currentIndexPoint;
+        [SerializeField] private bool _nextPoint = true;
+        public Vector3[] Points => _points;
+        public int CurrentIndex => _currentIndexPoint;
+        public bool NextPoint => _nextPoint;
+        public override void Reverse()
+        {
+            _nextPoint = !_nextPoint;
+        }
+
+        protected override IEnumerator Move()
+        {
+            transform.position = _points[0];
+            _currentIndexPoint = 0;
+            while (CurrentIndex < Points.Length-1)
+            {
+                Vector3 targetPoint = Points[_currentIndexPoint + 1];
+                while (Vector3.Distance(transform.position, targetPoint) > 0.05f)
+                {
+                    transform.position = Vector3.MoveTowards(transform.position, targetPoint, CurrentSpeed * Time.deltaTime);
+                    transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.y / 100);
+                    yield return null;
+                }
+
+                transform.position = new Vector3(targetPoint.x, targetPoint.y, transform.position.z);
+                yield return null;
+            }
+        }
+    }
+}
