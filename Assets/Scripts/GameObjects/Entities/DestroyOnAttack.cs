@@ -7,18 +7,10 @@ namespace Assets.Scripts.GameObjects.Entities
 
 {
     [RequireComponent(typeof(BasicAttack))]
-    public class DestroyOnAttack : MonoBehaviour, IBasicEntity
+    public class DestroyOnAttack : MonoBehaviour
     {
         BasicAttack attack;
         private bool isDestroy = false;
-
-        public int HP => 0;
-
-        public int MaxHP => 0;
-
-        public event Action<IBasicEntity, int> OnTakenDamage;
-
-        public event Action<IBasicEntity> OnDestroyed;
 
         private void Start()
         {
@@ -26,7 +18,6 @@ namespace Assets.Scripts.GameObjects.Entities
             attack.OnViewEnemy += (e) => { if (e) attack.Shutdown(); };
             attack.OnAttacking += () =>
             {
-                OnTakenDamage?.Invoke(this, 1);
                 StartCoroutine(Destroyed());
             };
         }
@@ -40,14 +31,8 @@ namespace Assets.Scripts.GameObjects.Entities
                 {
                     yield return null;
                 }*/
-                OnDestroyed?.Invoke(this);
                 Destroy(gameObject);
             }
-        }
-
-        public void TakeDamage(int damage)
-        {
-            throw new NotImplementedException();
         }
     }
 }

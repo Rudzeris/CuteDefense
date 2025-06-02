@@ -19,18 +19,18 @@ namespace Assets.Scripts.GameObjects.Attacks
             bool attacking = false;
             while (!attacking && IsActive)
             {
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, DistanceAttack);
-
-                if (hit.collider != null && (hit.collider?.GetComponent<IFraction>()?.Fraction ?? this.Fraction.Fraction) != this.Fraction.Fraction)
-                {
-                    if (hit.collider?.GetComponent<IBasicEntity>() is IBasicEntity entity && CheckEntity(entity))
+                RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector2.right, DistanceAttack);
+                foreach (var hit in hits)
+                    if (hit.collider != null && (hit.collider?.GetComponent<IFraction>()?.Fraction ?? this.Fraction.Fraction) != this.Fraction.Fraction)
                     {
-                        OnViewEnemy?.Invoke(true);
-                        entity.TakeDamage(Damage);
-                        OnAttacking?.Invoke();
-                        attacking = true;
+                        if (hit.collider?.GetComponent<IBasicEntity>() is IBasicEntity entity && CheckEntity(entity))
+                        {
+                            OnViewEnemy?.Invoke(true);
+                            entity.TakeDamage(Damage);
+                            OnAttacking?.Invoke();
+                            attacking = true;
+                        }
                     }
-                }
 
                 yield return null;
             }
