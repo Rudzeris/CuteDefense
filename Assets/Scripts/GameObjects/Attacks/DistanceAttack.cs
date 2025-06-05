@@ -10,23 +10,27 @@ namespace Assets.Scripts.GameObjects.Attacks
     {
         public override event Action OnAttacking;
         public override event Action<bool> OnViewEnemy;
-        public Vector3 BulletSpawnPoint;
+        public float MaxXDistanceAttack = 4f;
         public GameObject Bullet;
-        private void OnDrawGizmos()
+
+        public float CurrentDistance => Math.Min(DistanceAttack,Math.Abs(transform.position.x- MaxXDistanceAttack));
+        protected virtual void OnDrawGizmos()
         {
             Gizmos.color = Color.green;
-            Gizmos.DrawLine(transform.position + BulletSpawnPoint, new Vector3(transform.position.x + DistanceAttack * Mathf.Sign(transform.localScale.x)
+            Gizmos.DrawLine(AttackPoint, new Vector3(transform.position.x + CurrentDistance * Mathf.Sign(transform.localScale.x)
                 , transform.position.y, transform.position.z));
         }
         protected override IEnumerator Attack()
         {
             // Ищет противника в одной линии и атакует
             IBasicEntity enemyEntity = null;
+            Transform currentTransform = transform;
             while (IsActive)
             {
+                enemyEntity = null;
                 if (enemyEntity == null)
                 {
-                    RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Mathf.Sign(transform.localScale.x) == -1 ? Vector2.left : Vector2.right, DistanceAttack);
+                    RaycastHit2D[] hits = Physics2D.RaycastAll(AttackPoint, Mathf.Sign(currentTransform.localScale.x) == -1 ? Vector2.left : Vector2.right, DistanceAttack);
 
                     enemyEntity = null;
                     foreach (RaycastHit2D hit in hits)
@@ -48,7 +52,7 @@ namespace Assets.Scripts.GameObjects.Attacks
                 }
                 if (enemyEntity != null)
                 {
-                    GameObject obj = Instantiate(Bullet, transform.position + BulletSpawnPoint, Quaternion.identity, this.gameObject.transform);
+                    GameObject obj = Instantiate(Bullet, AttackPoint, Quaternion.identity, currentTransform);
                     if (obj != null)
                     {
                         OnAttacking?.Invoke();
@@ -65,5 +69,7 @@ namespace Assets.Scripts.GameObjects.Attacks
                     yield return null;
             }
         }
+        protected virtual Vector3 AttackPoint
+            => Vector3.zero;
     }
 }

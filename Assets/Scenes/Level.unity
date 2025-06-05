@@ -567,7 +567,7 @@ MonoBehaviour:
     Value: {fileID: 6081084199373771312, guid: fd5d4b17044f59841b764f33c89babe3, type: 3}
     PlacementType: 1
   - Key: 6
-    Value: {fileID: 3297739552073221883, guid: b19a8d53bbc2dab40914dcdb7224c955, type: 3}
+    Value: {fileID: 3297739552073221883, guid: c7d5c80832f300f478d2a6699567ce2a, type: 3}
     PlacementType: 0
   CellTileMask:
     serializedVersion: 2

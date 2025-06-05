@@ -3,10 +3,15 @@ using UnityEngine;
 
 namespace Assets.Scripts.GameObjects.Moving
 {
-    public class StaticDirectionMove : AMovable
+    public interface IDirectionMove : IMovable
+    {
+        public Direction2 Direction { get; }
+    }
+    public class StaticDirectionMove : AMovable, IDirectionMove
     {
         [SerializeField] protected Direction2 _direction;
         public Direction2 Direction => _direction;
+        
         protected override IEnumerator Move()
         {
             while (IsMove)

@@ -3,7 +3,17 @@ using UnityEngine;
 
 namespace Assets.Scripts.GameObjects.Moving
 {
-    public abstract class AMovable : MonoBehaviour
+    public interface IMovable
+    {
+        public bool IsMove { get; }
+        public float CurrentSpeed { get; }
+
+        public void Startup();
+        public void Shutdown();
+        public abstract void Reverse();
+
+    }
+    public abstract class AMovable : MonoBehaviour, IMovable
     {
         [SerializeField] private bool _isMove = true;
         [SerializeField] protected float _currentSpeed;
