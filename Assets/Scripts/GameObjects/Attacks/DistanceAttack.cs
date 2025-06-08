@@ -13,7 +13,7 @@ namespace Assets.Scripts.GameObjects.Attacks
         public float MaxXDistanceAttack = 4f;
         public GameObject Bullet;
 
-        public float CurrentDistance => Math.Min(DistanceAttack,Math.Abs(transform.position.x- MaxXDistanceAttack));
+        public float CurrentDistance => Math.Min(DistanceAttack, Math.Abs(transform.position.x - MaxXDistanceAttack));
         protected virtual void OnDrawGizmos()
         {
             Gizmos.color = Color.green;
@@ -70,6 +70,6 @@ namespace Assets.Scripts.GameObjects.Attacks
             }
         }
         protected virtual Vector3 AttackPoint
-            => Vector3.zero;
+            => this.transform.position;
     }
 }

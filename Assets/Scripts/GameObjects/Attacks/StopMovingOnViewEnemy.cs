@@ -6,6 +6,7 @@ namespace Assets.Scripts.GameObjects.Attacks
     [RequireComponent(typeof(AMovable))]
     public class StopMovingOnViewEnemy : MonoBehaviour
     {
+        [SerializeField] private bool isPause = true;
         private BasicAttack basicAttack;
         private AMovable amovable;
         void Start()
@@ -13,11 +14,16 @@ namespace Assets.Scripts.GameObjects.Attacks
             basicAttack = GetComponent<BasicAttack>();
             amovable = GetComponent<AMovable>();
 
-            basicAttack.OnViewEnemy += (t) =>
-            {
-                if (t) amovable.Shutdown();
-                else if(!amovable.IsMove) amovable.Startup();
-            };
+            basicAttack.OnViewEnemy += Pause;
+        }
+
+        void Pause(bool isView)
+        {
+            if (isView) amovable.Shutdown();
+            else if (!amovable.IsMove) amovable.Startup();
+            
+            if(!isPause && isView)
+                basicAttack.OnViewEnemy -= Pause;
         }
     }
 }

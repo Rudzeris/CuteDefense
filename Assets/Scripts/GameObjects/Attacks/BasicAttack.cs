@@ -25,7 +25,7 @@ namespace Assets.Scripts.GameObjects.Attacks
             Fraction = GetComponent<IFraction>();
             Target = GetComponent<ITarget>();
         }
-        private void Start()
+        protected virtual void Start()
         {
             if (AutoStart)
                 Startup();
