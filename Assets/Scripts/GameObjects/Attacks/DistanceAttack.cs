@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.GameObjects.Entities;
 using Assets.Scripts.GameObjects.Fractions;
+using Assets.Scripts.GameObjects.Moving;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -52,13 +53,14 @@ namespace Assets.Scripts.GameObjects.Attacks
                 }
                 if (enemyEntity != null)
                 {
-                    GameObject obj = Instantiate(Bullet, AttackPoint, Quaternion.identity, currentTransform);
+                    GameObject obj = Instantiate(Bullet, transform.position, Quaternion.identity, currentTransform);
                     if (obj != null)
                     {
                         OnAttacking?.Invoke();
                         enemyEntity = null;
 
                         // TODO: Настроить Bullet
+                        new PointFirstDirectionSecondMove(obj, transform.position, AttackPoint);
 
                         yield return new WaitForSeconds(Cooldown);
                     }

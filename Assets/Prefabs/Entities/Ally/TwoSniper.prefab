@@ -197,7 +197,7 @@ MonoBehaviour:
   _cooldown: 1.5
   _forAllFirstAttackCooldown: 0.4
   MaxXDistanceAttack: 7.2
-  Bullet: {fileID: 4647221326654743193, guid: 31f9122f476f4d2449430a23be3794e2, type: 3}
+  Bullet: {fileID: 4647221326654743193, guid: 6589730096bd52d42927215c022d4b77, type: 3}
   attackPoints:
   - {fileID: 8582594941192623164}
   - {fileID: 2004569547441407305}

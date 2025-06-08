@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 3569242670750782102}
   - component: {fileID: -8625980570924582251}
   - component: {fileID: -6152608167523686322}
+  - component: {fileID: -118212430357424398}
   m_Layer: 0
   m_Name: PointsBullet
   m_TagString: Untagged
@@ -213,3 +214,20 @@ MonoBehaviour:
   _isMove: 1
   _currentSpeed: 2
   _direction: 2
+--- !u!114 &-118212430357424398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4647221326654743193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92280db1643042a4d914c906acb13218, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isMove: 1
+  _currentSpeed: 2
+  _points: []
+  _currentIndexPoint: 0
+  _nextPoint: 1
