@@ -15,8 +15,8 @@ namespace Assets.Scripts.GameObjects.Attacks
 
             basicAttack.OnViewEnemy += (t) =>
             {
-                if (t && amovable.IsMove) amovable.Shutdown();
-                else if (!t && !amovable.IsMove) amovable.Startup();
+                if (t) amovable.Shutdown();
+                else if(!amovable.IsMove) amovable.Startup();
             };
         }
     }

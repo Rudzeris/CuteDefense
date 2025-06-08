@@ -26,9 +26,11 @@ namespace Assets.Scripts.GameObjects.Moving
         protected abstract IEnumerator Move();
         public virtual void Startup()
         {
-            if (IsMove)
+            if (!IsMove)
+            {
+                _isMove = true;
                 StartCoroutine(Move());
-            _isMove = true;
+            }
         }
         public virtual void Shutdown() => _isMove = false;
         public abstract void Reverse();
